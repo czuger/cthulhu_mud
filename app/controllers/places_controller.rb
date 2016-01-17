@@ -30,6 +30,10 @@ class PlacesController < ApplicationController
 
     respond_to do |format|
       if @place.save
+        unless params[ :place ][ :parent_id ].empty?
+          @parent = Place.find( params[ :place ][ :parent_id ] )
+          @parent.children << @place
+        end
         format.html { redirect_to @place, notice: 'Place was successfully created.' }
         format.json { render :show, status: :created, location: @place }
       else
@@ -44,8 +48,10 @@ class PlacesController < ApplicationController
   def update
     respond_to do |format|
       if @place.update(place_params)
-        @parent = Place.find( params[ :place ][ :parent_id ] )
-        @parent.children << @place
+        unless params[ :place ][ :parent_id ].empty?
+          @parent = Place.find( params[ :place ][ :parent_id ] )
+          @parent.children << @place
+        end
         format.html { redirect_to @place, notice: 'Place was successfully updated.' }
         format.json { render :show, status: :ok, location: @place }
       else

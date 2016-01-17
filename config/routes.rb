@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
-  resources :places
-  resources :places
+  resources :travels do
+    get :wayback
+  end
+
+  resources :places do
+  end
 
   root 'places#index'
 

@@ -1,9 +1,7 @@
 class CreatePlaces < ActiveRecord::Migration
   def change
     create_table :places do |t|
-      t.string :name
-      t.integer :city_id
-      t.boolean :city
+      t.string :name, null: false
 
       t.timestamps null: false
     end

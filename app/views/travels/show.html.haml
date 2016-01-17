@@ -1,0 +1,23 @@
+%p#notice= notice
+
+%p
+  %b Place from:
+  = name_with_ancestors( @travel.place_from )
+%p
+  %b Place to:
+  = name_with_ancestors( @travel.place_to )
+%p
+  %b Cost:
+  = @travel.cost
+%p
+  %b Duration:
+  = @travel.duration.strftime( '%R' )
+
+= link_to 'Create wayback', travel_wayback_path( @travel )
+
+%br
+%br
+
+= link_to 'Edit', edit_travel_path(@travel)
+\|
+= link_to 'Back', travels_path

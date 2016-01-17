@@ -1,0 +1,27 @@
+%h1 Listing travels
+
+%table
+  %thead
+    %tr
+      %th Place from
+      %th Place to
+      %th Cost
+      %th Duration
+      %th
+      %th
+      %th
+
+  %tbody
+    - @travels.each do |travel|
+      %tr
+        %td= name_with_ancestors( travel.place_from )
+        %td= name_with_ancestors( travel.place_to )
+        %td= travel.cost
+        %td= travel.duration.strftime( '%R' )
+        %td= link_to 'Show', travel
+        %td= link_to 'Edit', edit_travel_path(travel)
+        %td= link_to 'Destroy', travel, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Travel', new_travel_path
