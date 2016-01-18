@@ -14,10 +14,13 @@
 ActiveRecord::Schema.define(version: 20160118043028) do
 
   create_table "investigators", force: :cascade do |t|
-    t.string   "name",        null: false
-    t.integer  "location_id", null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "name",              null: false
+    t.string   "gender",            null: false
+    t.integer  "location_id"
+    t.integer  "travel_id"
+    t.datetime "travel_start_time"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   create_table "place_hierarchies", id: false, force: :cascade do |t|
