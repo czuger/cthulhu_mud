@@ -15,6 +15,7 @@ class InvestigatorsController < ApplicationController
   # GET /investigators/new
   def new
     @investigator = Investigator.new
+    initialize_investigator
   end
 
   # GET /investigators/1/edit
@@ -61,6 +62,11 @@ class InvestigatorsController < ApplicationController
     end
   end
 
+  def new_name
+    @gender = params[ :gender ]
+    render layout: false
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_investigator
@@ -69,6 +75,11 @@ class InvestigatorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def investigator_params
-      params.require(:investigator).permit(:name, :location_id)
+      params.require(:investigator).permit(:name, :gender)
+    end
+
+    def initialize_investigator
+      @investigator.gender= :m
+      @investigator.name = Investigator.generate_name( :m )
     end
 end

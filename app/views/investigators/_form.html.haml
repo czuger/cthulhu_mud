@@ -8,13 +8,13 @@
 
   .field
     = f.label :name
-    = f.text_field :name
+    = f.text_field :name, :readonly => true
 
   .field
     = f.label :Male
-    = f.radio_button( :gender, :m )
+    = f.radio_button( :gender, :m, class: :gender_selector )
     = f.label :Female
-    = f.radio_button( :gender, :f )
+    = f.radio_button( :gender, :f, class: :gender_selector )
 
   .actions
     = f.submit 'Save'

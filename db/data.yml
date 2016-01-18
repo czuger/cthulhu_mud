@@ -1,0 +1,103 @@
+
+---
+places:
+  columns:
+  - id
+  - name
+  - created_at
+  - updated_at
+  - parent_id
+  records: 
+  - - 1
+    - Arkham
+    - '2016-01-17 18:16:26.498166'
+    - '2016-01-17 18:16:26.498166'
+    - 
+  - - 3
+    - Dunwich
+    - '2016-01-17 18:17:41.915373'
+    - '2016-01-17 18:17:41.915373'
+    - 
+  - - 4
+    - Railway station
+    - '2016-01-17 18:17:53.985458'
+    - '2016-01-17 18:17:53.999985'
+    - 1
+  - - 5
+    - Railway station
+    - '2016-01-17 18:18:07.357748'
+    - '2016-01-17 18:18:07.366591'
+    - 3
+
+---
+place_hierarchies:
+  columns:
+  - ancestor_id
+  - descendant_id
+  - generations
+  records: 
+  - - 1
+    - 1
+    - 0
+  - - 1
+    - 4
+    - 1
+  - - 3
+    - 3
+    - 0
+  - - 3
+    - 5
+    - 1
+  - - 4
+    - 4
+    - 0
+  - - 5
+    - 5
+    - 0
+
+---
+travels:
+  columns:
+  - id
+  - place_from_id
+  - place_to_id
+  - cost
+  - duration
+  - created_at
+  - updated_at
+  records: 
+  - - 1
+    - 4
+    - 5
+    - 5.0
+    - '2016-01-17 02:10:00.000000'
+    - '2016-01-17 18:18:24.630356'
+    - '2016-01-17 18:18:24.630356'
+  - - 2
+    - 5
+    - 4
+    - 5.0
+    - '2000-01-01 02:10:00.000000'
+    - '2016-01-17 18:18:26.279348'
+    - '2016-01-17 18:18:26.279348'
+
+---
+investigators:
+  columns:
+  - id
+  - name
+  - gender
+  - location_id
+  - travel_id
+  - travel_start_time
+  - created_at
+  - updated_at
+  records: 
+  - - 1
+    - Erik King
+    - m
+    - 
+    - 
+    - 
+    - '2016-01-18 10:35:10.859178'
+    - '2016-01-18 10:35:10.859178'

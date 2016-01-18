@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
 
   resources :investigators
+  get 'new_investigator_name/:gender' => 'investigators#new_name'
+
   resources :travels do
     get :wayback
   end
 
-  resources :places do
-  end
+  resources :places
 
   root 'places#index'
 
