@@ -14,7 +14,7 @@
     - @investigators.each do |investigator|
       %tr
         %td= investigator.name
-        %td= name_with_ancestors( investigator.location )
+        %td= show_place( investigator )
         %td= link_to 'Move', investigator_move_path( investigator )
         |
         %td= link_to 'Show', investigator

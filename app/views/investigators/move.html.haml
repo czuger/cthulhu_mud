@@ -1,0 +1,14 @@
+%h1 Avlaiable travels
+
+%table
+  %thead
+    %tr
+      %th Destination
+      %th
+
+  %tbody
+    - @travels.each do |travel|
+      %tr
+        %td= name_with_ancestors( travel.place_to )
+        %td= link_to 'Start travel', investigator_move_start_path( @investigator.id, travel_destination: travel.id ), method: :post
+

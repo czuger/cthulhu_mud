@@ -70,10 +70,24 @@ class InvestigatorsController < ApplicationController
     render layout: false
   end
 
+  def move
+    set_investigator
+    @travels = Travel.where( place_from_id: @investigator.location_id )
+  end
+
+  def move_start
+    set_investigator
+    travel = Travel.find( params[ :travel_destination ] )
+    @investigator.update_attributes(
+      location_id: nil, travel_id: travel.id, travel_start_time: Time.now
+    )
+    redirect_to investigators_url
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_investigator
-      @investigator = Investigator.find(params[:id])
+      @investigator = Investigator.find( params[:id] || params[:investigator_id] )
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
