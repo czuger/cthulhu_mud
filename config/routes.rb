@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
-  resources :investigators
+  resources :professions
+  resources :investigators do
+    :move
+  end
   get 'new_investigator_name/:gender' => 'investigators#new_name'
 
   resources :travels do

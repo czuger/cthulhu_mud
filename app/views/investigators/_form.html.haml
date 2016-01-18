@@ -9,12 +9,18 @@
   .field
     = f.label :name
     = f.text_field :name, :readonly => true
+    \
+    %button#change_name{ type: :button } Change name
 
   .field
     = f.label :Male
     = f.radio_button( :gender, :m, class: :gender_selector )
     = f.label :Female
     = f.radio_button( :gender, :f, class: :gender_selector )
+
+  .field
+    = f.label :profession
+    = f.select( :profession_id, Profession.all.map { |p| [ p.name, p.id ] } )
 
   .actions
     = f.submit 'Save'

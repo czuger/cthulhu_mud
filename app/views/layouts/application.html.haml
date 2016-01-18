@@ -6,10 +6,12 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
+    = link_to 'Investigators', investigators_path
+    |
     = link_to 'Places', places_path
     |
     = link_to 'Travels', travels_path
     |
-    = link_to 'Investigators', investigators_path
+    = link_to 'Profession', professions_path
 
     = yield

@@ -27,6 +27,9 @@ class InvestigatorsController < ApplicationController
   def create
     @investigator = Investigator.new(investigator_params)
 
+    profession = Profession.find( params[ :investigator ][ :profession_id ] )
+    @investigator.location_id = profession.start_place_id
+
     respond_to do |format|
       if @investigator.save
         format.html { redirect_to @investigator, notice: 'Investigator was successfully created.' }
@@ -75,7 +78,7 @@ class InvestigatorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def investigator_params
-      params.require(:investigator).permit(:name, :gender)
+      params.require(:investigator).permit(:name, :gender, :profession_id)
     end
 
     def initialize_investigator
