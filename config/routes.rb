@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   resources :professions
   resources :investigators do
-    :move
+    get :move
   end
   get 'new_investigator_name/:gender' => 'investigators#new_name'
 

@@ -15,7 +15,7 @@
       %tr
         %td= investigator.name
         %td= name_with_ancestors( investigator.location )
-        %td= link_to 'Move',
+        %td= link_to 'Move', investigator_move_path( investigator )
         |
         %td= link_to 'Show', investigator
         %td= link_to 'Edit', edit_investigator_path(investigator)
