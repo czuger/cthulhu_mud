@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :investigators
   resources :travels do
     get :wayback
   end

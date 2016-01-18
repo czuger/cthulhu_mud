@@ -1,0 +1,16 @@
+= form_for @investigator do |f|
+  - if @investigator.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@investigator.errors.count, "error")} prohibited this investigator from being saved:"
+      %ul
+        - @investigator.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :location_id
+    = f.number_field :location_id
+  .actions
+    = f.submit 'Save'
