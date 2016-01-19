@@ -11,7 +11,7 @@
   = @travel.cost
 %p
   %b Duration:
-  = @travel.duration.strftime( '%R' )
+  = @travel.duration.strftime( '%T' )
 
 = link_to 'Create wayback', travel_wayback_path( @travel )
 

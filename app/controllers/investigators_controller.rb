@@ -1,10 +1,14 @@
 class InvestigatorsController < ApplicationController
   before_action :set_investigator, only: [:show, :edit, :update, :destroy]
+  before_action :set_current_game_board, except: [ :new_name ]
 
   # GET /investigators
   # GET /investigators.json
   def index
-    @investigators = Investigator.all
+    @investigators = Investigator.where( game_board_id: @current_game_board )
+    @investigators.each do |investigator|
+      investigator.check_travel
+    end
   end
 
   # GET /investigators/1
@@ -29,13 +33,16 @@ class InvestigatorsController < ApplicationController
 
     profession = Profession.find( params[ :investigator ][ :profession_id ] )
     @investigator.location_id = profession.start_place_id
+    @investigator.influence = profession.influence
+    @investigator.observation = profession.observation
+    @investigator.game_board = @current_game_board
 
     respond_to do |format|
       if @investigator.save
-        format.html { redirect_to @investigator, notice: 'Investigator was successfully created.' }
+        format.html { redirect_to [ @current_game_board, @investigator ], notice: 'Investigator was successfully created.' }
         format.json { render :show, status: :created, location: @investigator }
       else
-        format.html { render :new }
+        format.html { render new_game_board_investigator_path(@current_game_board ) }
         format.json { render json: @investigator.errors, status: :unprocessable_entity }
       end
     end
@@ -46,10 +53,10 @@ class InvestigatorsController < ApplicationController
   def update
     respond_to do |format|
       if @investigator.update(investigator_params)
-        format.html { redirect_to @investigator, notice: 'Investigator was successfully updated.' }
+        format.html { redirect_to [ @current_game_board, @investigator ], notice: 'Investigator was successfully updated.' }
         format.json { render :show, status: :ok, location: @investigator }
       else
-        format.html { render :edit }
+        format.html { render new_game_board_investigator_path(@current_game_board ) }
         format.json { render json: @investigator.errors, status: :unprocessable_entity }
       end
     end
@@ -60,7 +67,7 @@ class InvestigatorsController < ApplicationController
   def destroy
     @investigator.destroy
     respond_to do |format|
-      format.html { redirect_to investigators_url, notice: 'Investigator was successfully destroyed.' }
+      format.html { redirect_to [ @current_game_board, @investigator ], notice: 'Investigator was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -81,13 +88,19 @@ class InvestigatorsController < ApplicationController
     @investigator.update_attributes(
       location_id: nil, travel_id: travel.id, travel_start_time: Time.now
     )
-    redirect_to investigators_url
+    redirect_to game_board_investigators_url( @current_game_board )
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_investigator
       @investigator = Investigator.find( params[:id] || params[:investigator_id] )
+      @investigator.check_travel
+    end
+
+    def set_current_game_board
+      @current_game_board = GameBoard.find(params[:game_board_id] )
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

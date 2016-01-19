@@ -18,3 +18,5 @@
 
 .idea
 .lock-ClosureTreePlace-*
+coverage
+.sass-cache

@@ -2,48 +2,61 @@ require 'test_helper'
 
 class InvestigatorsControllerTest < ActionController::TestCase
   setup do
-    @investigator = investigators(:one)
+    @game_board = create( :game_board )
+    @investigator = @game_board.investigators.first
   end
 
   test "should get index" do
-    get :index
+    get :index, game_board_id: @game_board
     assert_response :success
     assert_not_nil assigns(:investigators)
   end
 
   test "should get new" do
-    get :new
+    get :new, game_board_id: @game_board
     assert_response :success
   end
 
   test "should create investigator" do
     assert_difference('Investigator.count') do
-      post :create, investigator: { location_id: @investigator.location_id, name: @investigator.name }
+      post :create, game_board_id: @game_board, investigator: { location_id: @investigator.location_id,
+        name: @investigator.name, profession_id: @investigator.profession_id, gender: :m }
     end
 
-    assert_redirected_to investigator_path(assigns(:investigator))
+    assert_redirected_to [ assigns( :current_game_board ), assigns( :investigator ) ]
   end
 
   test "should show investigator" do
-    get :show, id: @investigator
+    get :show, game_board_id: @game_board, id: @investigator
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @investigator
+    get :edit, id: @investigator, game_board_id: @game_board
     assert_response :success
   end
 
   test "should update investigator" do
-    patch :update, id: @investigator, investigator: { location_id: @investigator.location_id, name: @investigator.name }
-    assert_redirected_to investigator_path(assigns(:investigator))
+    patch :update, game_board_id: @game_board, id: @investigator, investigator: { location_id: @investigator.location_id, name: @investigator.name }
+    assert_redirected_to [ assigns( :current_game_board ), assigns( :investigator ) ]
   end
 
   test "should destroy investigator" do
     assert_difference('Investigator.count', -1) do
-      delete :destroy, id: @investigator
+      delete :destroy, game_board_id: @game_board, id: @investigator
     end
 
-    assert_redirected_to investigators_path
+    assert_redirected_to game_board_investigators_path( assigns( :current_game_board ) )
   end
+
+  test "should get new name" do
+    get :new_name, gender: :m
+    assert_response :success
+  end
+
+  test "should show moves" do
+    get :move, game_board_id: @game_board, investigator_id: @investigator
+    assert_response :success
+  end
+
 end

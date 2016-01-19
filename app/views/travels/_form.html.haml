@@ -17,7 +17,7 @@
     = f.text_field :cost
   .field
     = f.label :duration
-    = f.time_select :duration
+    = f.time_select :duration, include_seconds: true
   .actions
     = f.submit 'Save'
 

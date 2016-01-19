@@ -1,7 +1,10 @@
 FactoryGirl.define do
   factory :profession do
-    name "MyString"
-start_place_id 1
+    factory :private do
+      name "Private"
+      start_place factory: :arkham
+      influence 2
+      observation 4
+    end
   end
-
 end

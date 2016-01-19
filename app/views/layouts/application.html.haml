@@ -6,8 +6,11 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    = link_to 'Investigators', investigators_path
+    = link_to 'Game boards', game_boards_path
     |
+    - if @current_game_board
+      = link_to 'Investigators', game_board_investigators_path( @current_game_board )
+      |
     = link_to 'Places', places_path
     |
     = link_to 'Travels', travels_path

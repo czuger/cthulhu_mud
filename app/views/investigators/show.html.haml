@@ -7,6 +7,6 @@
   %b Location:
   = @investigator.location_id
 
-= link_to 'Edit', edit_investigator_path(@investigator)
+= link_to 'Edit', edit_game_board_investigator_path( @current_game_board, @investigator )
 \|
-= link_to 'Back', investigators_path
+= link_to 'Back', game_board_investigators_path( @current_game_board )

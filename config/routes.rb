@@ -1,19 +1,21 @@
 Rails.application.routes.draw do
 
-  resources :professions
-  resources :investigators do
-    get :move
-    post :move_start
+  resources :game_boards do
+    resources :investigators do
+      get :move
+      post :move_start
+    end
   end
+
   get 'new_investigator_name/:gender' => 'investigators#new_name'
 
   resources :travels do
     get :wayback
   end
-
   resources :places
+  resources :professions
 
-  root 'places#index'
+  root 'game_boards#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

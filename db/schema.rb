@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160118165721) do
+ActiveRecord::Schema.define(version: 20160119165650) do
+
+  create_table "game_boards", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "indices", force: :cascade do |t|
+    t.integer  "game_board_id", null: false
+    t.integer  "place_id",      null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "indices", ["game_board_id"], name: "index_indices_on_game_board_id"
+  add_index "indices", ["place_id"], name: "index_indices_on_place_id"
 
   create_table "investigators", force: :cascade do |t|
     t.string   "name",              null: false
@@ -22,6 +37,9 @@ ActiveRecord::Schema.define(version: 20160118165721) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.integer  "profession_id",     null: false
+    t.integer  "influence",         null: false
+    t.integer  "observation",       null: false
+    t.integer  "game_board_id",     null: false
   end
 
   create_table "place_hierarchies", id: false, force: :cascade do |t|
@@ -45,6 +63,8 @@ ActiveRecord::Schema.define(version: 20160118165721) do
     t.integer  "start_place_id", null: false
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.integer  "influence",      null: false
+    t.integer  "observation",    null: false
   end
 
   create_table "travels", force: :cascade do |t|

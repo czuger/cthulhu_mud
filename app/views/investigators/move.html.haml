@@ -10,5 +10,5 @@
     - @travels.each do |travel|
       %tr
         %td= name_with_ancestors( travel.place_to )
-        %td= link_to 'Start travel', investigator_move_start_path( @investigator.id, travel_destination: travel.id ), method: :post
+        %td= link_to 'Start travel', game_board_investigator_move_start_path( @current_game_board, @investigator, travel_destination: travel.id ), method: :post
 

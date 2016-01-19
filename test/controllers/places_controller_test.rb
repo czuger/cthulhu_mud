@@ -2,7 +2,7 @@ require 'test_helper'
 
 class PlacesControllerTest < ActionController::TestCase
   setup do
-    @place = places(:one)
+    @place = create( :arkham )
   end
 
   test "should get index" do
@@ -18,7 +18,7 @@ class PlacesControllerTest < ActionController::TestCase
 
   test "should create place" do
     assert_difference('Place.count') do
-      post :create, place: { city: @place.city, city_id: @place.city_id, name: @place.name }
+      post :create, place: { name: @place.name, parent_id: [] }
     end
 
     assert_redirected_to place_path(assigns(:place))
@@ -35,7 +35,7 @@ class PlacesControllerTest < ActionController::TestCase
   end
 
   test "should update place" do
-    patch :update, id: @place, place: { city: @place.city, city_id: @place.city_id, name: @place.name }
+    patch :update, id: @place, place: { name: @place.name, parent_id: [] }
     assert_redirected_to place_path(assigns(:place))
   end
 

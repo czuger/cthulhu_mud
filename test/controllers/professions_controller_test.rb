@@ -2,7 +2,7 @@ require 'test_helper'
 
 class ProfessionsControllerTest < ActionController::TestCase
   setup do
-    @profession = professions(:one)
+    @profession = create( :private )
   end
 
   test "should get index" do

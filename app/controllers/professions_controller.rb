@@ -25,6 +25,7 @@ class ProfessionsController < ApplicationController
   # POST /professions.json
   def create
     @profession = Profession.new(profession_params)
+    @profession.influence = @profession.observation = 2
 
     respond_to do |format|
       if @profession.save
@@ -69,6 +70,6 @@ class ProfessionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profession_params
-      params.require(:profession).permit(:name, :start_place_id)
+      params.require(:profession).permit(:name, :start_place_id, :influence, :observation )
     end
 end

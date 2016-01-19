@@ -1,0 +1,21 @@
+%h1 Listing game_boards
+
+%table
+  %thead
+    %tr
+      %th
+      %th
+      %th
+      %th
+
+  %tbody
+    - @game_boards.each do |game_board|
+      %tr
+        %td= link_to 'Investigators', game_board_investigators_path( game_board )
+        %td= link_to 'Show', game_board
+        %td= link_to 'Edit', edit_game_board_path(game_board)
+        %td= link_to 'Destroy', game_board, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Game board', new_game_board_path

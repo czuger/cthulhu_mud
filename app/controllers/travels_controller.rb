@@ -15,6 +15,7 @@ class TravelsController < ApplicationController
   # GET /travels/new
   def new
     @travel = Travel.new
+    @travel.duration = Time.at( 10 ).utc # We need to start from epoch + 10 sec (default duration)
   end
 
   # GET /travels/1/edit
@@ -41,6 +42,7 @@ class TravelsController < ApplicationController
   # PATCH/PUT /travels/1.json
   def update
     respond_to do |format|
+
       if @travel.update(travel_params)
         format.html { redirect_to @travel, notice: 'Travel was successfully updated.' }
         format.json { render :show, status: :ok, location: @travel }
