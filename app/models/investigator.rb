@@ -34,6 +34,17 @@ class Investigator < ActiveRecord::Base
     duration - travel_time
   end
 
+  def make_test( attribute )
+    # Roll n d6
+    successes = 0
+    1.upto( read_attribute( attribute ).to_i ).each do
+      if rand( 1 .. 6 ) >= 5
+        successes += 0
+      end
+    end
+    successes
+  end
+
   private
 
   # Bring back all time object to utc epoch (required because of strange sqlite or active record management)

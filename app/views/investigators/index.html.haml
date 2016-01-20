@@ -5,6 +5,7 @@
     %tr
       %th Name
       %th Location
+      %th Clues
       %th
       %th
       %th
@@ -23,11 +24,16 @@
               = Time.at( investigator.travel_eta ).utc.strftime( '%T' )
           - else
             = name_with_ancestors( investigator.location )
+        %td= investigator.clues
         %td= link_to 'Move', game_board_investigator_move_path( @current_game_board, investigator )
+        %td= link_to 'Read the news', game_board_investigator_read_the_news_path( @current_game_board, investigator )
+        %td= link_to 'Investigate a place', game_board_investigator_investigate_a_place_path( @current_game_board, investigator )
         %td= link_to 'Show', [ @current_game_board, investigator ]
         %td= link_to 'Edit', edit_game_board_investigator_path( @current_game_board, investigator )
         %td= link_to 'Destroy', [ @current_game_board, investigator ], :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
+= next_turn_link
+|
 = link_to 'New Investigator', new_game_board_investigator_path( @current_game_board )

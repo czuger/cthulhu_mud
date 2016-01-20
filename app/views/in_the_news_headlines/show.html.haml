@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Headline:
+  = @in_the_news_headline.headline
+
+= link_to 'Edit', edit_in_the_news_headline_path(@in_the_news_headline)
+\|
+= link_to 'Back', in_the_news_headlines_path

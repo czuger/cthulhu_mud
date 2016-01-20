@@ -1,6 +1,9 @@
 class InvestigatorsController < ApplicationController
-  before_action :set_investigator, only: [:show, :edit, :update, :destroy]
+  before_action :set_investigator, only: [:show, :edit, :update, :destroy, :investigate_a_place ]
   before_action :set_current_game_board, except: [ :new_name ]
+
+  include InvestigatorsActions::Movement
+  include InvestigatorsActions::ClueFinding
 
   # GET /investigators
   # GET /investigators.json
@@ -39,7 +42,7 @@ class InvestigatorsController < ApplicationController
 
     respond_to do |format|
       if @investigator.save
-        format.html { redirect_to [ @current_game_board, @investigator ], notice: 'Investigator was successfully created.' }
+        format.html { redirect_to game_board_investigators_path( @current_game_board ), notice: 'Investigator was successfully created.' }
         format.json { render :show, status: :created, location: @investigator }
       else
         format.html { render new_game_board_investigator_path(@current_game_board ) }
@@ -75,20 +78,6 @@ class InvestigatorsController < ApplicationController
   def new_name
     @gender = params[ :gender ]
     render layout: false
-  end
-
-  def move
-    set_investigator
-    @travels = Travel.where( place_from_id: @investigator.location_id )
-  end
-
-  def move_start
-    set_investigator
-    travel = Travel.find( params[ :travel_destination ] )
-    @investigator.update_attributes(
-      location_id: nil, travel_id: travel.id, travel_start_time: Time.now
-    )
-    redirect_to game_board_investigators_url( @current_game_board )
   end
 
   private

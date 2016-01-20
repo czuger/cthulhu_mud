@@ -1,7 +1,7 @@
 class GameBoardsController < ApplicationController
-  before_action :set_game_board, only: [:show, :edit, :update, :destroy]
+  before_action :set_game_board, only: [:show, :edit, :update, :destroy, :start_game, :next_turn ]
 
-  NB_INDICES_PER_TURN = 4
+  include GameBoardSetting::TurnManagement
 
   # GET /game_boards
   # GET /game_boards.json
@@ -30,6 +30,9 @@ class GameBoardsController < ApplicationController
 
     respond_to do |format|
       if @game_board.save
+
+        generate_clues
+
         format.html { redirect_to @game_board, notice: 'Game board was successfully created.' }
         format.json { render :show, status: :created, location: @game_board }
       else
@@ -66,11 +69,12 @@ class GameBoardsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_game_board
-      @game_board = GameBoard.find(params[:id])
+      @game_board = GameBoard.find(params[:id] || params[:game_board_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_board_params
       params[:game_board]
     end
+
 end

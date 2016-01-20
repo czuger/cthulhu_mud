@@ -23,7 +23,7 @@ class InvestigatorsControllerTest < ActionController::TestCase
         name: @investigator.name, profession_id: @investigator.profession_id, gender: :m }
     end
 
-    assert_redirected_to [ assigns( :current_game_board ), assigns( :investigator ) ]
+    assert_redirected_to game_board_investigators_path( assigns( :current_game_board ) )
   end
 
   test "should show investigator" do
@@ -56,6 +56,11 @@ class InvestigatorsControllerTest < ActionController::TestCase
 
   test "should show moves" do
     get :move, game_board_id: @game_board, investigator_id: @investigator
+    assert_response :success
+  end
+
+  test "should read the news" do
+    get :read_the_news, game_board_id: @game_board, investigator_id: @investigator
     assert_response :success
   end
 

@@ -1,10 +1,16 @@
 Rails.application.routes.draw do
 
+  resources :in_the_news_headlines
   resources :game_boards do
     resources :investigators do
       get :move
       post :move_start
+
+      get :read_the_news
+      get :investigate_a_place
     end
+    get :next_turn
+    get :start_game
   end
 
   get 'new_investigator_name/:gender' => 'investigators#new_name'
