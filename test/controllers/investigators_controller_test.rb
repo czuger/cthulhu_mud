@@ -1,9 +1,11 @@
 require 'test_helper'
+require 'pp'
 
 class InvestigatorsControllerTest < ActionController::TestCase
   setup do
     @game_board = create( :game_board )
     @investigator = @game_board.investigators.first
+    @travel = create( :arkham_to_kingsport )
   end
 
   test "should get index" do
@@ -19,7 +21,7 @@ class InvestigatorsControllerTest < ActionController::TestCase
 
   test "should create investigator" do
     assert_difference('Investigator.count') do
-      post :create, game_board_id: @game_board, investigator: { location_id: @investigator.location_id,
+      post :create, game_board_id: @game_board, investigator: {
         name: @investigator.name, profession_id: @investigator.profession_id, gender: :m }
     end
 
@@ -37,7 +39,8 @@ class InvestigatorsControllerTest < ActionController::TestCase
   end
 
   test "should update investigator" do
-    patch :update, game_board_id: @game_board, id: @investigator, investigator: { location_id: @investigator.location_id, name: @investigator.name }
+    patch :update, game_board_id: @game_board, id: @investigator, investigator: {
+      name: @investigator.name }
     assert_redirected_to [ assigns( :current_game_board ), assigns( :investigator ) ]
   end
 
@@ -55,8 +58,13 @@ class InvestigatorsControllerTest < ActionController::TestCase
   end
 
   test "should show moves" do
-    get :move, game_board_id: @game_board, investigator_id: @investigator
+    get :movement_selection, game_board_id: @game_board, investigator_id: @investigator
     assert_response :success
+  end
+
+  test "should move somewhere" do
+    get :move_start, game_board_id: @game_board, investigator_id: @investigator, travel_destination: @travel
+    assert_redirected_to game_board_investigators_url( assigns( :current_game_board ) )
   end
 
   test "should read the news" do

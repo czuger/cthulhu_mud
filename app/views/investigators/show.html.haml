@@ -5,7 +5,7 @@
   = @investigator.name
 %p
   %b Location:
-  = @investigator.location_id
+  = @investigator.game_action.inspect
 
 = link_to 'Edit', edit_game_board_investigator_path( @current_game_board, @investigator )
 \|

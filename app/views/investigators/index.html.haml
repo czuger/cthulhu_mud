@@ -15,17 +15,9 @@
     - @investigators.each do |investigator|
       %tr
         %td= investigator.name
-        %td
-          - if investigator.on_travel?
-            On travel to
-            = travel_destination( investigator.travel )
-            Eta
-            %span{ eta: investigator.travel_eta, class: :eta_show_area, id: "eta_show_area_#{investigator.id}" }
-              = Time.at( investigator.travel_eta ).utc.strftime( '%T' )
-          - else
-            = name_with_ancestors( investigator.location )
+        %td= investigator.game_action.print_action
         %td= investigator.clues
-        %td= link_to 'Move', game_board_investigator_move_path( @current_game_board, investigator )
+        %td= link_to 'Move', game_board_investigator_movement_selection_path( @current_game_board, investigator )
         %td= link_to 'Read the news', game_board_investigator_read_the_news_path( @current_game_board, investigator )
         %td= link_to 'Investigate a place', game_board_investigator_investigate_a_place_path( @current_game_board, investigator )
         %td= link_to 'Show', [ @current_game_board, investigator ]

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :in_the_news_headlines
   resources :game_boards do
     resources :investigators do
-      get :move
+      get :movement_selection
       post :move_start
 
       get :read_the_news

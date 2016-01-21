@@ -35,10 +35,13 @@ class InvestigatorsController < ApplicationController
     @investigator = Investigator.new(investigator_params)
 
     profession = Profession.find( params[ :investigator ][ :profession_id ] )
-    @investigator.location_id = profession.start_place_id
     @investigator.influence = profession.influence
     @investigator.observation = profession.observation
     @investigator.game_board = @current_game_board
+
+    action = Ga::Waiting.new( location_id: profession.start_place_id )
+    action.save!
+    @investigator.game_action = action
 
     respond_to do |format|
       if @investigator.save

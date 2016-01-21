@@ -3,17 +3,28 @@ module GameBoardSetting::CluesGeneration
   private
 
   def generate_clues
-    places_with_indices = @game_board.clues.map{ |e| e.place }
-    avaliable_places = Place.leaves.reject{ |p| places_with_indices.include?( p ) }.shuffle
+    cleanup_places_in_the_news
+
+    places_with_indices_ids = @game_board.clues.map{ |e| e.place_id }
+    avaliable_places = Place.leaves.reject{ |p| places_with_indices_ids.include?( p.id ) }.shuffle
 
     nb_indices_per_turn = ( @game_board.investigators.count.to_f / 2.0 ).ceil
 
     1.upto( nb_indices_per_turn ).each do
       place = avaliable_places.shift
+      break unless place
       @game_board.places_where_there_are_clues << place
     end
 
     set_indices_places_in_the_news
+  end
+
+  def cleanup_places_in_the_news
+    @game_board.in_the_news_places.each do |itnp|
+      unless Clue.find_by_game_board_id_and_place_id( @game_board.id, itnp.place_id )
+        itnp.destroy
+      end
+    end
   end
 
   def set_indices_places_in_the_news
@@ -23,6 +34,7 @@ module GameBoardSetting::CluesGeneration
     headlines = InTheNewsHeadline.all
 
     clues_places.each do |place|
+      next if InTheNewsPlace.find_by_game_board_id_and_place_id( @game_board.id, place.id )
       if rand( 100 ) > 20
         # The information is good, the clue is at the right place
         # @game_board.places_where_the_news_says_there_are_clues << place
