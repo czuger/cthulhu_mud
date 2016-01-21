@@ -288,10 +288,70 @@ game_boards:
   - id
   - created_at
   - updated_at
+  - started
+  records: 
+  - - 13
+    - '2016-01-21 09:17:41.941597'
+    - '2016-01-21 09:17:41.941597'
+    - false
+
+---
+in_the_news_headlines:
+  columns:
+  - id
+  - headline
+  - created_at
+  - updated_at
   records: 
   - - 1
-    - '2016-01-19 15:47:45.254492'
-    - '2016-01-19 15:47:45.254492'
+    - A strange creature have been seen near
+    - '2016-01-20 09:49:45.505949'
+    - '2016-01-20 09:49:45.505949'
+  - - 2
+    - People have seen gloomy lights near
+    - '2016-01-20 09:50:08.335677'
+    - '2016-01-20 09:50:08.335677'
+  - - 3
+    - A half eaten cadaver has been discovered near
+    - '2016-01-20 09:50:34.773319'
+    - '2016-01-20 09:50:34.773319'
+  - - 4
+    - 'A stench can be smell near '
+    - '2016-01-20 09:56:28.762411'
+    - '2016-01-20 09:56:28.762411'
+
+---
+game_actions:
+  columns:
+  - id
+  - type
+  - location_id
+  - travel_id
+  - start_time
+  - created_at
+  - updated_at
+  records: 
+  - - 1
+    - Ga::Waiting
+    - 4
+    - 
+    - 
+    - '2016-01-20 15:40:03.265846'
+    - '2016-01-20 15:40:03.265846'
+  - - 4
+    - Ga::Movement
+    - 
+    - 6
+    - '2016-01-20 16:55:35.108913'
+    - '2016-01-20 16:55:35.112476'
+    - '2016-01-20 16:55:35.112476'
+  - - 9
+    - Ga::Movement
+    - 
+    - 9
+    - '2016-01-21 13:53:09.341282'
+    - '2016-01-21 13:53:09.345543'
+    - '2016-01-21 13:53:09.345543'
 
 ---
 investigators:
@@ -299,37 +359,23 @@ investigators:
   - id
   - name
   - gender
-  - location_id
-  - travel_id
-  - travel_start_time
   - created_at
   - updated_at
   - profession_id
   - influence
   - observation
   - game_board_id
+  - clues
+  - game_action_id
   records: 
-  - - 1
-    - Griffith Lord
+  - - 3
+    - Willard Whitehead
     - m
-    - 
-    - 7
-    - '2016-01-19 16:32:59.262988'
-    - '2016-01-19 16:26:17.878317'
-    - '2016-01-19 16:32:59.263643'
-    - 4
-    - 2
-    - 4
-    - 1
-  - - 2
-    - Antoinette Tomlinson
-    - f
-    - 8
-    - 
-    - 
-    - '2016-01-19 16:33:13.063239'
-    - '2016-01-19 16:34:11.433092'
+    - '2016-01-21 09:17:46.848509'
+    - '2016-01-21 13:53:09.347697'
     - 3
     - 4
     - 2
-    - 1
+    - 13
+    - 0
+    - 9
