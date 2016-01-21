@@ -13,7 +13,7 @@
     - @professions.each do |profession|
       %tr
         %td= profession.name
-        %td= name_with_ancestors( profession.start_place )
+        %td= profession.start_place.name_with_ancestors
         %td= link_to 'Show', profession
         %td= link_to 'Edit', edit_profession_path(profession)
         %td= link_to 'Destroy', profession, :method => :delete, :data => { :confirm => 'Are you sure?' }

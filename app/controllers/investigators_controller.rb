@@ -10,7 +10,7 @@ class InvestigatorsController < ApplicationController
   def index
     @investigators = Investigator.where( game_board_id: @current_game_board )
     @investigators.each do |investigator|
-      investigator.check_travel
+      investigator.game_action.check_action
     end
   end
 
@@ -88,7 +88,7 @@ class InvestigatorsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_investigator
       @investigator = Investigator.find( params[:id] || params[:investigator_id] )
-      @investigator.check_travel
+      @investigator.game_action.check_action
     end
 
     def set_current_game_board

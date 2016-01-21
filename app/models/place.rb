@@ -6,4 +6,8 @@ class Place < ActiveRecord::Base
   has_many :travels, foreign_key: :place_from_id
   has_many :neighbours, class_name: 'Place', foreign_key: :place_to_id, through: :travels, source: :place_to
 
+  def name_with_ancestors
+    ( [ name ] + ancestors.map{ |e| e.name } ).join( ' - ' )
+  end
+
 end

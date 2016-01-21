@@ -8,10 +8,10 @@
 
   .field
     = f.label :place_from
-    = select( :travel, :place_from_id, Place.all.map { |p| [ name_with_ancestors( p ), p.id ] } )
+    = select( :travel, :place_from_id, Place.all.map { |p| [ p.name_with_ancestors, p.id ] } )
   .field
     = f.label :place_to
-    = select( :travel, :place_to_id, Place.all.map { |p| [ name_with_ancestors( p ), p.id ] } )
+    = select( :travel, :place_to_id, Place.all.map { |p| [ p.name_with_ancestors, p.id ] } )
   .field
     = f.label :cost
     = f.text_field :cost

@@ -14,8 +14,8 @@
   %tbody
     - @travels.each do |travel|
       %tr
-        %td= name_with_ancestors( travel.place_from )
-        %td= name_with_ancestors( travel.place_to )
+        %td= travel.place_from.name_with_ancestors
+        %td= travel.place_to.name_with_ancestors
         %td= travel.cost
         %td= travel.duration.strftime( '%T' )
         %td= link_to 'Show', travel

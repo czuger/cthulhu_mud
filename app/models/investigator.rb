@@ -18,13 +18,6 @@ class Investigator < ActiveRecord::Base
     end
   end
 
-  def check_travel
-    # if on_travel? && travel_eta <= 0
-    #   update_attributes(
-    #     location_id: travel.place_to_id, travel_id: nil, travel_start_time: nil )
-    # end
-  end
-
   def make_test( attribute )
     # Roll n d6
     successes = 0

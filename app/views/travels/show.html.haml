@@ -2,10 +2,10 @@
 
 %p
   %b Place from:
-  = name_with_ancestors( @travel.place_from )
+  = @travel.place_from.name_with_ancestors
 %p
   %b Place to:
-  = name_with_ancestors( @travel.place_to )
+  = @travel.place_to.name_with_ancestors
 %p
   %b Cost:
   = @travel.cost
