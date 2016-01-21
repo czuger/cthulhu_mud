@@ -65,11 +65,11 @@ class TravelsController < ApplicationController
 
   def wayback
     @travel = Travel.find( params[ :travel_id ] )
-    wayback = @travel.dup
-    wayback.place_from_id = @travel.place_to_id
-    wayback.place_to_id = @travel.place_from_id
-    wayback.save!
-    redirect_to wayback
+    @travel_wayback = @travel.dup
+    @travel_wayback.place_from_id = @travel.place_to_id
+    @travel_wayback.place_to_id = @travel.place_from_id
+    @travel_wayback.save!
+    redirect_to @travel_wayback
   end
 
   private

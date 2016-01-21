@@ -10,7 +10,7 @@ class Ga::Waiting < GameAction
     Travel.where( place_from_id: location_id )
   end
 
-  def move_to
+  def move_to( travel )
     ActiveRecord::Base.transaction do
       new_action = Ga::Movement.create( travel_id: travel.id, start_time: Time.now )
       investigator.update_attribute( :game_action_id, new_action.id )

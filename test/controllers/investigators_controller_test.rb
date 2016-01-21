@@ -72,4 +72,10 @@ class InvestigatorsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should investigate a place" do
+    get :investigate_a_place, game_board_id: @game_board, investigator_id: @investigator
+    assert_response :success
+  end
+
+
 end

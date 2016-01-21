@@ -29,6 +29,11 @@ class TravelsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should create the wayback" do
+    get :wayback, travel_id: @travel
+    assert_redirected_to travel_path(assigns(:travel_wayback))
+  end
+
   test "should get edit" do
     get :edit, id: @travel
     assert_response :success

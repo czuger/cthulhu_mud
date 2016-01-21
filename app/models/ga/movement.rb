@@ -1,7 +1,5 @@
 class Ga::Movement < GameAction
 
-  belongs_to :travel, class_name: 'Travel', foreign_key: :travel_id
-
   def print_action_data
     travel_eta_int = travel_eta
     {
