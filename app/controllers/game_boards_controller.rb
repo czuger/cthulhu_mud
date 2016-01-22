@@ -31,8 +31,6 @@ class GameBoardsController < ApplicationController
     respond_to do |format|
       if @game_board.save
 
-        generate_clues
-
         format.html { redirect_to @game_board, notice: 'Game board was successfully created.' }
         format.json { render :show, status: :created, location: @game_board }
       else
@@ -64,6 +62,16 @@ class GameBoardsController < ApplicationController
       format.html { redirect_to game_boards_url, notice: 'Game board was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def start_game
+
+    redirect_to game_board_investigators_path( @game_board )
+  end
+
+  def next_turn
+    @game_board.next_turn
+    redirect_to game_board_investigators_path( @game_board )
   end
 
   private
