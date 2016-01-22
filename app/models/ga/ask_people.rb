@@ -27,7 +27,7 @@ class Ga::AskPeople < GameAction
     asking_successful = investigator.make_test( :influence ) > 0
 
     if asking_successful
-      clue = Clue.find_by_game_board_id_and_place_id( game_board_id, location_id )
+      clue = Clue.find_by_game_board_id_and_place_id( investigator.game_board_id, location_id )
       if clue
         @action_result = :it_is_here
       else
@@ -38,8 +38,8 @@ class Ga::AskPeople < GameAction
             @result_location_id = neighbour.id
             return
           end
-          @action_result = :i_dont_know
         end
+        @action_result = :i_dont_know
       end
     else
       @action_result = :bad_asking
@@ -53,9 +53,9 @@ class Ga::AskPeople < GameAction
   end
 
   def store_result
-    GameActionLog.create!( investigator_id: investigator_id,
+    GameActionLog.create!( investigator_id: investigator.id,
                            action_type: self.class, action_location_id: location_id,
-                           action_result: @result, result_location_id: @result_location_id
+                           result_code: @action_result, result_location_id: @result_location_id
     )
   end
 

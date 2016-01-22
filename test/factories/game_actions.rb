@@ -9,5 +9,10 @@ FactoryGirl.define do
       travel factory: :arkham_to_kingsport
       start_time { Time.now }
     end
+    factory :ask_people do
+      type 'Ga::AskPeople'
+      location factory: :arkham
+      start_time { Time.now - 5000 }
+    end
   end
 end

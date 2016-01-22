@@ -25,18 +25,12 @@ class GameBoardsControllerTest < ActionController::TestCase
   end
 
   test "should start game" do
-    assert_difference( 'Clue.count' ) do
-      get :start_game, game_board_id: @game_board
-    end
-
+    get :start_game, game_board_id: @game_board
     assert_redirected_to game_board_investigators_path( assigns( :game_board ) )
   end
 
   test "should start next turn" do
-    assert_difference( 'Clue.count' ) do
-      get :next_turn, game_board_id: @game_board
-    end
-
+    get :next_turn, game_board_id: @game_board
     assert_redirected_to game_board_investigators_path( assigns( :game_board ) )
   end
 

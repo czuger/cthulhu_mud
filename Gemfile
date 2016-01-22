@@ -52,6 +52,7 @@ group :development do
   gem 'spring'
 
   gem 'simplecov'
+  gem "mocha"
 
   gem 'capistrano', '~> 3.4'
 
