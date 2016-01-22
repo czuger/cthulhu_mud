@@ -1,2 +1,2 @@
-class Ga::Investigation < GameAction
+class Ga::Investigation < Ga::Investigation
 end

@@ -1,27 +1,6 @@
 module InvestigatorsActions::ClueFinding
 
   # TODO : transformer ces deux actions en game_action, ajouter un timer et garder dans la table action le resultat de l'action (peut être un champs serialisable)
-  def ask_people
-    asking_successful = @investigator.make_test( :influence ) > 0
-
-    if asking_successful
-      clue = Clue.find_by_game_board_id_and_place_id( @current_game_board, @investigator.location )
-      if clue
-        action_result( :it_is_here )
-      else
-        @investigator.game_action.location.neighbours.each do |neighbour|
-          clue = Clue.find_by_game_board_id_and_place_id( @current_game_board, neighbour )
-          if clue
-            return action_result( :clue_position, location: neighbour.name_with_ancestors )
-          end
-          action_result( :i_dont_know )
-        end
-      end
-    else
-      action_result( :bad_asking )
-    end
-
-  end
 
   def investigate_a_place
     clue = Clue.find_by_game_board_id_and_place_id( @current_game_board, @investigator.location )
@@ -43,10 +22,9 @@ module InvestigatorsActions::ClueFinding
     end
   end
 
-  private
-
-  def action_result( action, location: nil )
-    @result = I18n.t( "actions_results.#{action}", location: location )
+  def ask_people
+    @investigator.game_action.ask_people
+    redirect_to game_board_investigators_url( @current_game_board )
   end
 
 end
