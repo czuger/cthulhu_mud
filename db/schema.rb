@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160122071530) do
+ActiveRecord::Schema.define(version: 20160122083518) do
 
   create_table "clues", force: :cascade do |t|
     t.integer  "game_board_id", null: false
@@ -90,11 +90,12 @@ ActiveRecord::Schema.define(version: 20160122071530) do
   end
 
   create_table "portals", force: :cascade do |t|
-    t.integer  "game_board_id", null: false
-    t.integer  "place_id",      null: false
-    t.string   "presage",       null: false
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.integer  "game_board_id",                 null: false
+    t.integer  "place_id",                      null: false
+    t.string   "presage",                       null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.boolean  "discovered",    default: false, null: false
   end
 
   add_index "portals", ["game_board_id"], name: "index_portals_on_game_board_id"

@@ -65,7 +65,7 @@ class GameBoardsController < ApplicationController
   end
 
   def start_game
-
+    @game_board.start_game
     redirect_to game_board_investigators_path( @game_board )
   end
 

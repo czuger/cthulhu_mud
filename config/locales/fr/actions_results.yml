@@ -1,0 +1,6 @@
+fr:
+  actions_results:
+    it_is_here: "Avez vous bien cherché ? Je suis sur que c'est ici"
+    i_dont_know: "Je n'en n'ai aucune idée. Vraiement désolé"
+    bad_asking: "Occupez vous de vos affaires"
+    clue_position: "Allez plutôt chercher du coté de %{location}"

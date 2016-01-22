@@ -2,12 +2,13 @@ Rails.application.routes.draw do
 
   resources :in_the_news_headlines
   resources :game_boards do
+    resource :portals, only: [ :show ]
+    resource :in_the_news, only: [ :show ]
     resources :investigators do
       get :movement_selection
       post :move_start
-
-      get :read_the_news
       get :investigate_a_place
+      get :ask_people
     end
     get :next_turn
     get :start_game

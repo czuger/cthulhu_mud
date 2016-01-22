@@ -4,6 +4,7 @@
   %thead
     %tr
       %th Name
+      %th Profession
       %th Location
       %th Clues
       %th
@@ -16,14 +17,15 @@
       - action_data = investigator.game_action.print_action_data
       %tr
         %td= investigator.name
+        %td= investigator.profession.name
         %td
           = action_data[ :location_to_print ]
           %span{ class: :eta_show_area, id: "eta_show_area_#{investigator.id}", eta: action_data[ :eta_int ] }
             = action_data[ :eta_str ]
         %td= investigator.clues
         %td= link_to 'Move', game_board_investigator_movement_selection_path( @current_game_board, investigator )
-        %td= link_to 'Read the news', game_board_investigator_read_the_news_path( @current_game_board, investigator )
         %td= link_to 'Investigate a place', game_board_investigator_investigate_a_place_path( @current_game_board, investigator )
+        %td= link_to t( '.ask_people' ), game_board_investigator_ask_people_path( @current_game_board, investigator )
         %td= link_to 'Show', [ @current_game_board, investigator ]
         %td= link_to 'Edit', edit_game_board_investigator_path( @current_game_board, investigator )
         %td= link_to 'Destroy', [ @current_game_board, investigator ], :method => :delete, :data => { :confirm => 'Are you sure?' }

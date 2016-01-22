@@ -1,0 +1,6 @@
+%h1 Discovered portals
+
+%ul
+- @places_with_discovered_portals.each do |place|
+  %li= place.name_with_ancestors
+

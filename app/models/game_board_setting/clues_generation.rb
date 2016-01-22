@@ -1,5 +1,7 @@
 module GameBoardSetting::CluesGeneration
 
+  PER_INVESTIGATOR_PER_TURN_CLUE_GENERATION = 1
+
   private
 
   def generate_clues
@@ -8,7 +10,7 @@ module GameBoardSetting::CluesGeneration
     places_with_indices_ids = clues.map{ |e| e.place_id }
     avaliable_places = Place.leaves.reject{ |p| places_with_indices_ids.include?( p.id ) }.shuffle
 
-    nb_indices_per_turn = ( investigators.count.to_f / 2.0 ).ceil
+    nb_indices_per_turn = ( investigators.count.to_f * PER_INVESTIGATOR_PER_TURN_CLUE_GENERATION ).ceil
 
     1.upto( nb_indices_per_turn ).each do
       place = avaliable_places.shift
