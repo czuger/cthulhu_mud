@@ -14,41 +14,49 @@ class Ga::AskPeople < GameAction
 
   def check_action
     if action_eta <= 0
-      @result = get_action_result
-      wait
+      ActiveRecord::Base.transaction do
+        set_action_result
+        wait
+      end
     end
   end
 
   private
 
-  def get_action_result
+  def set_action_result
     asking_successful = investigator.make_test( :influence ) > 0
 
     if asking_successful
       clue = Clue.find_by_game_board_id_and_place_id( game_board_id, location_id )
       if clue
-        action_result( :it_is_here )
+        @action_result = :it_is_here
       else
         location.neighbours.each do |neighbour|
           clue = Clue.find_by_game_board_id_and_place_id( game_board_id, neighbour.id )
           if clue
-            return action_result( :clue_position, location: neighbour.name_with_ancestors )
+            @action_result = :clue_position
+            @result_location_id = neighbour.id
+            return
           end
-          action_result( :i_dont_know )
+          @action_result = :i_dont_know
         end
       end
     else
-      action_result( :bad_asking )
+      @action_result = :bad_asking
     end
 
-    # TODO : store the results in game_action (mean we need to create two columns : )
-    # TODO : result_code, result_location_id
-    # TODO : Create a separate table to make a log (GameActionResult)
-    # TODO : keep last 10
+    store_result
 
     # Then the result of last action will be a link in the investigator menu (see result of last action)
     # Add the date
 
+  end
+
+  def store_result
+    GameActionLog.create!( investigator_id: investigator_id,
+                           action_type: self.class, action_location_id: location_id,
+                           action_result: @result, result_location_id: @result_location_id
+    )
   end
 
   def wait
