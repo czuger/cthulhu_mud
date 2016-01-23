@@ -1,6 +1,6 @@
 FactoryGirl.define do
-  factory :index, :class => 'Indice' do
+  factory :clue do
     game_board nil
-    place nil
+    place factory: :arkham
   end
 end

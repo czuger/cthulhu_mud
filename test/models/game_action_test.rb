@@ -22,6 +22,18 @@ class GameActionTest < ActiveSupport::TestCase
     action.wait
   end
 
+  test 'investigate' do
+    create( :benot_lerouge, game_board: @gb )
+    investigator = Investigator.find_by_name( 'Benot Lerouge' )
+    action = investigator.game_action
+    action.print_action_data
+    action.check_action
+    Clue.stubs(:find_by_game_board_id_and_place_id).returns( create( :clue, game_board: @gb ) )
+    Investigator.expects(:make_test).returns( true )
+    action.check_action
+    Clue.unstub(:find_by_game_board_id_and_place_id)
+  end
+
   test 'ask_people' do
     investigator = Investigator.find_by_name( 'George Bigot' )
     action = investigator.game_action

@@ -18,5 +18,10 @@ FactoryGirl.define do
       location {arkham}
       start_time { Time.now - 5000 }
     end
+    factory :investigate do
+      type 'Ga::Investigate'
+      location {arkham}
+      start_time { Time.now - 5000 }
+    end
   end
 end

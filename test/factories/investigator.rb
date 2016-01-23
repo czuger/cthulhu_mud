@@ -24,5 +24,13 @@ FactoryGirl.define do
       observation 2
       game_action factory: :ask_people
     end
+    factory :benot_lerouge do
+      name 'Benot Lerouge'
+      gender 'f'
+      profession factory: :writer
+      influence 4
+      observation 4
+      game_action factory: :investigate
+    end
   end
 end

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resource :portals, only: [ :show ]
     resource :in_the_news, only: [ :show ]
     resources :investigators do
+      resource :game_action_logs, only: [:show ]
       get :movement_selection
       post :move_start
       get :investigate_a_place

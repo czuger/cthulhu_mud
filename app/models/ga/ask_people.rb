@@ -1,7 +1,6 @@
 class Ga::AskPeople < GameAction
 
   ACTION_DURATION = 5
-  ACTION = :ask_people
 
   def print_action_data
     action_eta_int = action_eta
@@ -16,9 +15,15 @@ class Ga::AskPeople < GameAction
     if action_eta <= 0
       ActiveRecord::Base.transaction do
         set_action_result
+        store_result
         wait
       end
     end
+  end
+
+  # Caution : CONSTANT won't work there. Not overloaded by heritage.
+  def get_action_name
+    :ask_people
   end
 
   private
@@ -44,17 +49,11 @@ class Ga::AskPeople < GameAction
     else
       @action_result = :bad_asking
     end
-
-    store_result
-
-    # Then the result of last action will be a link in the investigator menu (see result of last action)
-    # Add the date
-
   end
 
   def store_result
     GameActionLog.create!( investigator_id: investigator.id,
-                           action_type: self.class, action_location_id: location_id,
+                           action_type: get_action_name, action_location_id: location_id,
                            result_code: @action_result, result_location_id: @result_location_id
     )
   end

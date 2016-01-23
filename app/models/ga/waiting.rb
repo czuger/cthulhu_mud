@@ -26,4 +26,12 @@ class Ga::Waiting < GameAction
     end
   end
 
+  def investigate
+    ActiveRecord::Base.transaction do
+      new_action = Ga::Investigate.create( location_id: location_id, start_time: Time.now )
+      investigator.update_attribute( :game_action_id, new_action.id )
+      self.destroy
+    end
+  end
+
 end

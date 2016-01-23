@@ -69,7 +69,7 @@ class InvestigatorsControllerTest < ActionController::TestCase
 
   test "should investigate a place" do
     get :investigate_a_place, game_board_id: @game_board, investigator_id: @investigator
-    assert_response :success
+    assert_redirected_to game_board_investigators_url( assigns( :current_game_board ) )
   end
 
   test "should ask people" do
