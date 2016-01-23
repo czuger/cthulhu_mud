@@ -32,7 +32,7 @@ class Ga::AskPeople < GameAction
         @action_result = :it_is_here
       else
         location.neighbours.each do |neighbour|
-          clue = Clue.find_by_game_board_id_and_place_id( game_board_id, neighbour.id )
+          clue = Clue.find_by_game_board_id_and_place_id( investigator.game_board_id, neighbour.id )
           if clue
             @action_result = :clue_position
             @result_location_id = neighbour.id

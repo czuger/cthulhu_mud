@@ -2,9 +2,12 @@ require 'test_helper'
 
 class GameActionTest < ActiveSupport::TestCase
 
+  def setup
+    @gb = create( :game_board )
+
+  end
   test 'waiting' do
-    gb = create( :game_board )
-    investigator = gb.investigators.first
+    investigator = @gb.investigators.first
     travel = Travel.first
     waiting = investigator.game_action
     waiting.print_action_data
@@ -12,7 +15,6 @@ class GameActionTest < ActiveSupport::TestCase
   end
 
   test 'movement' do
-    gb = create( :game_board )
     investigator = Investigator.find_by_name( 'Allyson Masley' )
     action = investigator.game_action
     action.print_action_data
@@ -21,7 +23,6 @@ class GameActionTest < ActiveSupport::TestCase
   end
 
   test 'ask_people' do
-    gb = create( :game_board )
     investigator = Investigator.find_by_name( 'George Bigot' )
     action = investigator.game_action
     action.print_action_data
@@ -32,13 +33,11 @@ class GameActionTest < ActiveSupport::TestCase
   end
 
   test 'ask_people_deep_in_method' do
-    gb = create( :game_board )
+    arkham = Place.find_by_name( 'Arkham' )
     investigator = Investigator.find_by_name( 'George Bigot' )
     action = investigator.game_action
     Clue.stubs(:find_by_game_board_id_and_place_id).returns(false)
-    Place.expects(:neighbours).returns( [ create(:arkham) ] )
-    puts Place.all.to_a.inspect
-    puts action.location.neighbours.inspect
+    Place.expects(:neighbours).returns( [ arkham ] )
     Investigator.expects(:make_test).returns(true)
     action.check_action
     Clue.unstub(:find_by_game_board_id_and_place_id)

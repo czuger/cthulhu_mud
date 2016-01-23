@@ -5,7 +5,7 @@ class InvestigatorsControllerTest < ActionController::TestCase
   setup do
     @game_board = create( :game_board )
     @investigator = @game_board.investigators.first
-    @travel = create( :arkham_to_kingsport )
+    @travel = Travel.first
   end
 
   test "should get index" do
@@ -72,5 +72,9 @@ class InvestigatorsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should ask people" do
+    get :ask_people, game_board_id: @game_board, investigator_id: @investigator
+    assert_redirected_to game_board_investigators_url( assigns( :current_game_board ) )
+  end
 
 end

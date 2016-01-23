@@ -46,9 +46,7 @@ module GameBoardSetting::CluesGeneration
         # The information is not at the right place.
         # We find a place near.
         neighbour = place.neighbours.sample
-        puts place.inspect
         # @game_board.places_where_the_news_says_there_are_clues << neighbour
-        puts headlines.inspect
         InTheNewsPlace.create(
           game_board_id: id, place_id: place.id, in_the_news_headline_id: headlines.sample.id )
 

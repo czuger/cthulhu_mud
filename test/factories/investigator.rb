@@ -1,12 +1,9 @@
 FactoryGirl.define do
   factory :investigator do
-    ignore do
-      main_location nil
-    end
     factory :graham_bell do
       name 'Graham Bell'
       gender 'm'
-      profession factory: :private, start_place: main_location
+      profession factory: :private
       influence 2
       observation 4
       game_action factory: :waiting
