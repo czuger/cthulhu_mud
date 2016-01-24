@@ -1,13 +1,13 @@
 fr:
   actions_results:
     ask_people:
-      it_is_here: "Avez vous bien cherché ? Je suis sur que c'est ici"
-      i_dont_know: "Je n'en n'ai aucune idée. Vraiement désolé"
-      bad_asking: "Occupez vous de vos affaires"
-      clue_position: "Allez plutôt chercher du coté de %{location}"
+      it_is_here: "Vous obtennez la certitude que ce que vous cherchez se trouve ici."
+      i_dont_know: "Vous obtennez la certitude qu'il n'y a rien dans les environs."
+      bad_asking: "Vous sucitez la moquerie au sujet de vos 'créatures étranges'"
+      clue_position: "Vous comprennez qu'il vaudrait mieux chercher du coté de %{location}"
     investigation:
       find_nothing: "Vous n'avez rien trouvé. Peut être qu'en cherchant mieux ..."
-      find_clue: "Vous avez trouvé un indice troublant."
+      find_clue: "Vous trouvez un indice."
       no_clue_there: "Il n'y a rien ici. Vous en êtes sur."
 
 

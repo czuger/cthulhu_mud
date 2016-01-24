@@ -1,9 +1,7 @@
 %ul
   - @log.each do |log|
     %li
-      = t( '.' + log.action_type )
-      = current_location_name( log )
-      \.
+      = t( '.' + log.action_type ) + ' ' + current_location_name( log ) + '.'
       = t( "actions_results.#{log.action_type}.#{log.result_code}", location: result_location_name( log ) )
 
 
