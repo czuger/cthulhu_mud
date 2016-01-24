@@ -1,5 +1,5 @@
 class InvestigatorsController < ApplicationController
-  before_action :set_investigator, only: [:show, :edit, :update, :destroy, :investigate_a_place, :ask_people ]
+  before_action :set_investigator, only: [:show, :edit, :update, :destroy, :investigate, :ask_people, :find_portal, :close_portal ]
   before_action :set_current_game_board, except: [ :new_name ]
 
   include InvestigatorsActions::Movement

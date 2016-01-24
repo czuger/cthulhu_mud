@@ -3,3 +3,5 @@ fr:
     show:
       ask_people: "En parlant aux gens autour"
       investigation: "Lors de vos recherches autour"
+      find_portal: 'En croisant des indices'
+      close_portal: ''

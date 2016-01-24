@@ -17,6 +17,7 @@ class GameBoard < ActiveRecord::Base
   has_many :discovered_portals, -> { where( discovered: true ) }, class_name: 'Portal'
   has_many :places_with_discovered_portals, class_name: 'Place', through: :discovered_portals, source: :place
 
-
+  has_many :portals, dependent: :destroy
+  has_many :game_board_logs, -> { order 'created_at desc' }, dependent: :destroy
 
 end

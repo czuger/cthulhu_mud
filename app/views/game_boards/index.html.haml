@@ -4,6 +4,11 @@
   %thead
     %tr
       %th
+      %th= 'Destiny'
+      %th= 'Current presage'
+      %th= 'Next presage'
+      %th= 'Game board status (open)'
+      %th= 'End result'
       %th
       %th
       %th
@@ -12,6 +17,11 @@
     - @game_boards.each do |game_board|
       %tr
         %td= link_to 'Investigators', game_board_investigators_path( game_board )
+        %td= game_board.destiny
+        %td= game_board.current_presage
+        %td= game_board.next_presage
+        %td= game_board.game_board_open
+        %td= game_board.end_result
         %td= link_to 'Show', game_board
         %td= link_to 'Edit', edit_game_board_path(game_board)
         %td= link_to 'Destroy', game_board, :method => :delete, :data => { :confirm => 'Are you sure?' }

@@ -19,16 +19,26 @@ class Ga::Waiting < GameAction
   end
 
   def ask_people
-    ActiveRecord::Base.transaction do
-      new_action = Ga::AskPeople.create( location_id: location_id, start_time: Time.now )
-      investigator.update_attribute( :game_action_id, new_action.id )
-      self.destroy
-    end
+    action_after_waiting( 'Ga::AskPeople' )
   end
 
   def investigate
+    action_after_waiting( 'Ga::Investigate' )
+  end
+
+  def find_portal
+    action_after_waiting( 'Ga::FindPortal' )
+  end
+
+  def close_portal
+    action_after_waiting( 'Ga::ClosePortal' )
+  end
+
+  private
+
+  def action_after_waiting( class_name )
     ActiveRecord::Base.transaction do
-      new_action = Ga::Investigate.create( location_id: location_id, start_time: Time.now )
+      new_action = class_name.constantize.create( location_id: location_id, start_time: Time.now )
       investigator.update_attribute( :game_action_id, new_action.id )
       self.destroy
     end

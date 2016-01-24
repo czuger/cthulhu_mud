@@ -9,6 +9,6 @@
   %tbody
     - @travels.each do |travel|
       %tr
-        %td= travel.place_to.name_with_ancestors
+        %td= destination( travel )
         %td= link_to 'Start travel', game_board_investigator_move_start_path( @current_game_board, @investigator, travel_destination: travel.id ), method: :post
 

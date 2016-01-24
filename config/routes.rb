@@ -4,12 +4,15 @@ Rails.application.routes.draw do
   resources :game_boards do
     resource :portals, only: [ :show ]
     resource :in_the_news, only: [ :show ]
+    resource :game_board_logs, only: [ :show ]
     resources :investigators do
       resource :game_action_logs, only: [:show ]
       get :movement_selection
       post :move_start
-      get :investigate_a_place
+      get :investigate
       get :ask_people
+      get :find_portal
+      get :close_portal
     end
     get :next_turn
     get :start_game

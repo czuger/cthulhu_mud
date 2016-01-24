@@ -1,0 +1,19 @@
+%h1 GameBoardLogs#show
+
+%table
+  %tr
+    %th
+      Presage
+    %th
+      Portals
+    %th
+      Destiny
+  - @log.each do |log|
+    %tr
+      %td= log.presage
+      %td= log.portal_count
+      %td= log.final_destiny
+
+
+
+

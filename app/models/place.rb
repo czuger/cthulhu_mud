@@ -69,9 +69,7 @@ class Place < ActiveRecord::Base
 
   def definite_article
     vowels = I18n.t( 'definite_article.vowels' )
-    puts vowels.inspect
     place_name = translated_name
-    puts place_name, place_name[0]
     if vowels.include?( place_name[ 0 ].downcase )
       I18n.t( 'definite_article.prec_by_vowel' )
     elsif gender == 'm'

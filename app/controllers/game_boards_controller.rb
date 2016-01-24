@@ -26,7 +26,11 @@ class GameBoardsController < ApplicationController
   # POST /game_boards
   # POST /game_boards.json
   def create
+
     @game_board = GameBoard.new(game_board_params)
+    @game_board.current_presage= GameBoard::PRESAGES.sample
+    @game_board.next_presage= GameBoard::PRESAGES.sample
+    @game_board.destiny= 15
 
     respond_to do |format|
       if @game_board.save

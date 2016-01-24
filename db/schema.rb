@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160124103647) do
+ActiveRecord::Schema.define(version: 20160124193545) do
 
   create_table "clues", force: :cascade do |t|
     t.integer  "game_board_id", null: false
@@ -45,10 +45,27 @@ ActiveRecord::Schema.define(version: 20160124103647) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "game_board_logs", force: :cascade do |t|
+    t.integer  "game_board_id", null: false
+    t.string   "presage",       null: false
+    t.integer  "portal_count",  null: false
+    t.integer  "final_destiny", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "game_board_logs", ["game_board_id"], name: "index_game_board_logs_on_game_board_id"
+
   create_table "game_boards", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.boolean  "started"
+    t.integer  "destiny",                        null: false
+    t.string   "current_presage",                null: false
+    t.string   "next_presage",                   null: false
+    t.integer  "turns",           default: 0,    null: false
+    t.boolean  "game_board_open", default: true, null: false
+    t.string   "end_result"
   end
 
   create_table "in_the_news_headlines", force: :cascade do |t|

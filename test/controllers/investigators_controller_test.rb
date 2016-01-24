@@ -68,12 +68,22 @@ class InvestigatorsControllerTest < ActionController::TestCase
   end
 
   test "should investigate a place" do
-    get :investigate_a_place, game_board_id: @game_board, investigator_id: @investigator
+    get :investigate, game_board_id: @game_board, investigator_id: @investigator
     assert_redirected_to game_board_investigators_url( assigns( :current_game_board ) )
   end
 
   test "should ask people" do
     get :ask_people, game_board_id: @game_board, investigator_id: @investigator
+    assert_redirected_to game_board_investigators_url( assigns( :current_game_board ) )
+  end
+
+  test "should find portal" do
+    get :find_portal, game_board_id: @game_board, investigator_id: @investigator
+    assert_redirected_to game_board_investigators_url( assigns( :current_game_board ) )
+  end
+
+  test "should close a portal" do
+    get :close_portal, game_board_id: @game_board, investigator_id: @investigator
     assert_redirected_to game_board_investigators_url( assigns( :current_game_board ) )
   end
 

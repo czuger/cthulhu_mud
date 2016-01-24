@@ -9,6 +9,8 @@
     = link_to 'Game boards', game_boards_path
     |
     - if @current_game_board
+      = link_to 'Game log', game_board_game_board_logs_path( @current_game_board )
+      |
       = link_to 'Investigators', game_board_investigators_path( @current_game_board )
       |
       = link_to 'Read the news', game_board_in_the_news_path( @current_game_board )

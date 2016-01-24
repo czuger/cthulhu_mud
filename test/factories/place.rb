@@ -1,5 +1,6 @@
 FactoryGirl.define do
   factory :place do
+    gender :p
     sequence :name do |n|
       "Random place #{n}"
     end

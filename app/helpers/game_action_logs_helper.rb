@@ -1,6 +1,6 @@
 module GameActionLogsHelper
 
-  def current_location_name(log )
+  def current_location_name( log )
     @action_location = log.action_location
     if @action_location
       @action_location.name_with_partitive_article + ' ' + @action_location.parent_with_locative_prep
