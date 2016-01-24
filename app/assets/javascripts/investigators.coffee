@@ -40,6 +40,8 @@ $(document).ready ->
         $( timer ).html( "#{h}:#{m}:#{s}" )
         $( timer ).attr( 'eta', remaining_time )
 
+
+
   unless root.timer_on
     setInterval( refresh_timers, 1000 )
     root.timer_on = true

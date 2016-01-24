@@ -1,0 +1,7 @@
+fr:
+  definite_article:
+    masculin: 'le '
+    feminin: 'la '
+    plural: 'les '
+    prec_by_vowel: "l'"
+    vowels: 'aeiouyh'

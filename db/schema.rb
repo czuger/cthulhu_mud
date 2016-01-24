@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160122105838) do
+ActiveRecord::Schema.define(version: 20160124103647) do
 
   create_table "clues", force: :cascade do |t|
     t.integer  "game_board_id", null: false
@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(version: 20160122105838) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "parent_id"
+    t.string   "gender",     null: false
   end
 
   create_table "portals", force: :cascade do |t|

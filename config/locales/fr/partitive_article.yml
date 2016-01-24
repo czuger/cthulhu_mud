@@ -1,0 +1,6 @@
+fr:
+  partitive_article:
+    masculin: 'du '
+    feminin: 'de la '
+    plural: 'des '
+    prec_by_vowel: "de l'"

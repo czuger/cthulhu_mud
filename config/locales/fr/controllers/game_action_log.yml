@@ -1,0 +1,5 @@
+fr:
+  game_action_logs:
+    show:
+      ask_people: "Lors de la collecte d'information autour"
+      investigation: "Lors de vos investigations autour"

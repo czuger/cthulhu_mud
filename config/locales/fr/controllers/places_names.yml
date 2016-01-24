@@ -1,0 +1,13 @@
+fr:
+  places:
+    arkham: 'Arkham'
+    asylum: 'asile'
+    train_station: 'gare'
+    newspaper: 'journal'
+    curiosity_shop: 'boutique de souvenirs'
+    bank: 'banque'
+    independence_square: "square de l'indépendance"
+    bishop_s_brook_bridge: "pont de bischop's brook"
+
+    dunwich: 'Dunwich'
+    village: 'village'

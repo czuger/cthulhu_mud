@@ -7,7 +7,7 @@ class Ga::AskPeople < GameAction
     {
       location_to_print: location.name_with_ancestors,
       eta_int: action_eta_int, eta_str: Time.at( action_eta_int ).utc.strftime( '%T' ),
-      action: ACTION
+      action: get_action_name
     }
   end
 

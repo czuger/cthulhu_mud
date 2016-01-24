@@ -12,5 +12,12 @@
   .field
     = f.label :parent_id
     = select( :place, :parent_id, Place.all.map { |p| [ p.name, p.id ] }, {include_blank: 'None'} )
-  .actions
-    = f.submit 'Save'
+  .field
+    = f.label :Masculin
+    = f.radio_button( :gender, :m )
+    = f.label :Feminin
+    = f.radio_button( :gender, :f )
+    = f.label :Plural
+    = f.radio_button( :gender, :p )
+
+  = f.submit 'Save'

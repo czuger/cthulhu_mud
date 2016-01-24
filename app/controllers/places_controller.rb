@@ -34,7 +34,7 @@ class PlacesController < ApplicationController
           @parent = Place.find( params[ :place ][ :parent_id ] )
           @parent.children << @place
         end
-        format.html { redirect_to @place, notice: 'Place was successfully created.' }
+        format.html { redirect_to places_path, notice: 'Place was successfully created.' }
         format.json { render :show, status: :created, location: @place }
       else
         format.html { render :new }
@@ -52,7 +52,7 @@ class PlacesController < ApplicationController
           @parent = Place.find( params[ :place ][ :parent_id ] )
           @parent.children << @place
         end
-        format.html { redirect_to @place, notice: 'Place was successfully updated.' }
+        format.html { redirect_to places_path, notice: 'Place was successfully updated.' }
         format.json { render :show, status: :ok, location: @place }
       else
         format.html { render :edit }
@@ -79,6 +79,6 @@ class PlacesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def place_params
-      params.require(:place).permit(:name, :city_id, :city)
+      params.require(:place).permit(:name, :gender)
     end
 end
