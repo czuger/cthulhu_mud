@@ -54,7 +54,9 @@ group :development do
   gem 'simplecov'
   gem "mocha"
 
-  gem 'capistrano', '~> 3.4'
+  gem 'capistrano', '~> 3.4.0'
+  gem 'capistrano-rails', '~> 1.1'
+  gem 'capistrano3-unicorn'
 
 end
 
