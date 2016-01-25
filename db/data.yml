@@ -218,19 +218,6 @@ professions:
     - 4
 
 ---
-game_boards:
-  columns:
-  - id
-  - created_at
-  - updated_at
-  - started
-  records: 
-  - - 13
-    - '2016-01-21 09:17:41.941597'
-    - '2016-01-24 07:28:54.627674'
-    - true
-
----
 clues:
   columns:
   - id

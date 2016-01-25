@@ -11,7 +11,7 @@ set :repo_url, 'git@github.com:czuger/cthulhu_mud'
 set :deploy_to, '/var/www/cthulhu_mud/prod/'
 
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
-set :linked_files, fetch(:linked_files, []).push( 'config/secrets.yml' )
+set :linked_files, fetch(:linked_files, []).push( 'config/secrets.yml', 'db/production.sqlite3' )
 
 # Default value for :scm is :git
 # set :scm, :git
