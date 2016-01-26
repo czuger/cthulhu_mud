@@ -23,12 +23,7 @@
           %span{ class: :eta_show_area, id: "eta_show_area_#{investigator.id}", eta: action_data[ :eta_int ] }
             = action_data[ :eta_str ]
         %td= investigator.clues
-        %td= link_to 'Move', game_board_investigator_movement_selection_path( @current_game_board, investigator )
-        %td= link_to 'Investigate a place', game_board_investigator_investigate_path( @current_game_board, investigator )
-        %td= link_to t( '.ask_people' ), game_board_investigator_ask_people_path( @current_game_board, investigator )
-        %td= link_to 'Trouver un portail', game_board_investigator_find_portal_path( @current_game_board, investigator )
-        %td= link_to 'Fermer un portail', game_board_investigator_close_portal_path( @current_game_board, investigator )
-        %td= link_to t( '.show_log' ), game_board_investigator_game_action_logs_path( @current_game_board, investigator )
+        %td= link_to 'Actions', game_board_investigator_investigator_actions_path( @current_game_board, investigator )
         %td= link_to 'Show', [ @current_game_board, investigator ]
         %td= link_to 'Edit', edit_game_board_investigator_path( @current_game_board, investigator )
         %td= link_to 'Destroy', [ @current_game_board, investigator ], :method => :delete, :data => { :confirm => 'Are you sure?' }

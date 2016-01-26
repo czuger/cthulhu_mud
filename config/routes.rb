@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resource :game_board_logs, only: [ :show ]
     resources :investigators do
       resource :game_action_logs, only: [:show ]
+      resource :investigator_actions, only: [:show ]
       get :movement_selection
       post :move_start
       get :investigate
@@ -18,6 +19,8 @@ Rails.application.routes.draw do
     get :start_game
   end
 
+  get 'start_admin' => 'admin#start_admin'
+  get 'stop_admin' => 'admin#stop_admin'
   get 'new_investigator_name/:gender' => 'investigators#new_name'
 
   resources :travels do
