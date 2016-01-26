@@ -1,7 +1,7 @@
 %h1 InvestigatorActions#show
 %p Find me in app/views/investigator_actions/show.html.haml
 
-%div
+%div.action_div
   %table
   %tr
     %th
@@ -16,7 +16,7 @@
       %td= log.portal_count
       %td= log.final_destiny
 
-%div
+%div.action_div
   %ul
     %li= link_to 'Move', game_board_investigator_movement_selection_path( @current_game_board, @investigator )
     %li= link_to 'Investigate a place', game_board_investigator_investigate_path( @current_game_board, @investigator )
