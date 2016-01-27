@@ -1,30 +1,21 @@
-%h1 InvestigatorActions#show
-%p Find me in app/views/investigator_actions/show.html.haml
+%h1 Investigator Actions
 
 #action_actions_div
   %div.action_div
-    Investigator :
     = @investigator.name
     \-
     Clues :
     = @investigator.clues
   %div.action_div
-    Current location :
-
     - action_data = @investigator.game_action.print_action_data
 
     = action_data[ :location_to_print ]
     %span{ class: :eta_show_area, id: "eta_show_area_#{@investigator.id}", eta: action_data[ :eta_int ] }
       = action_data[ :eta_str ]
 
-  %div.action_div
-    %ul
-      %li= link_to 'Move', game_board_investigator_movement_selection_path( @current_game_board, @investigator )
-      %li= link_to 'Investigate a place', game_board_investigator_investigate_path( @current_game_board, @investigator )
-      %li= link_to t( '.ask_people' ), game_board_investigator_ask_people_path( @current_game_board, @investigator )
-      %li= link_to 'Trouver un portail', game_board_investigator_find_portal_path( @current_game_board, @investigator )
-      %li= link_to 'Fermer un portail', game_board_investigator_close_portal_path( @current_game_board, @investigator )
-      %li= link_to t( '.show_log' ), game_board_investigator_game_action_logs_path( @current_game_board, @investigator )
+  = render partial: 'actions'
+  = render partial: 'game_status'
+  = render partial: 'board_log'
 
 #action_logs_div
   %div.action_div
@@ -47,40 +38,13 @@
             = t( '.' + log.action_type ) + ' ' + current_location_name( log ) + '.'
             = t( "actions_results.#{log.action_type}.#{log.result_code}", location: result_location_name( log ) )
 
-#action_game_logs_div
   %div.action_div
     %table
       %tr
-        %th{ colspan: 3 }
-          Game status
-      %tr
         %th
-          Current presage
-        %th
-          Next presage
-        %th
-          Destiny
-      - @board_log.each do |log|
+          Portals locations
+      - @places_with_discovered_portals.each do |place|
         %tr
-          %td= @current_game_board.current_presage
-          %td= @current_game_board.next_presage
-          %td= @current_game_board.destiny
+          %td= place.name_with_ancestors
 
 
-  %div.action_div
-    %table
-      %tr
-        %th{ colspan: 3 }
-          Game log
-      %tr
-        %th
-          Presage
-        %th
-          Portals
-        %th
-          Destiny
-      - @board_log.each do |log|
-        %tr
-          %td= log.presage
-          %td= log.portal_count
-          %td= log.final_destiny

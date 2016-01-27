@@ -38,7 +38,7 @@ module GameBoardSetting::TurnManagement
   end
 
   def generate_portal
-    places_without_portals_ids = Place.all.pluck( :id ) - places_with_portal_ids
+    places_without_portals_ids = Place.leaves.pluck( :id ) - places_with_portal_ids
     Portal.create( game_board_id: id, place_id: places_without_portals_ids.sample, presage: GameBoard::PRESAGES.sample )
   end
 
