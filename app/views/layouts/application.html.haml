@@ -16,6 +16,8 @@
       = link_to 'Read the news', game_board_in_the_news_path( @current_game_board )
       |
       = link_to 'Show portals', game_board_portals_path( @current_game_board )
+      |
+      = link_to 'Map', maps_show_path
     - if admin?
       |
       = link_to 'Places', places_path

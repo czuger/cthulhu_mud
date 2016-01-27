@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'maps/show'
+
   resources :in_the_news_headlines
   resources :game_boards do
     resource :portals, only: [ :show ]

@@ -4,7 +4,7 @@ class Ga::FindPortal < Ga::AskPeople
     clues_count = investigator.clues
 
     if clues_count >= 2
-      portal = investigator.game_board.portals.sample
+      portal = investigator.game_board.undiscovered_portals.sample
       ActiveRecord::Base.transaction do
         #  First we remove this clue
         portal.update_attribute( :discovered, true )

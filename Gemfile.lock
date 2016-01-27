@@ -75,6 +75,7 @@ GEM
       railties (>= 3.0.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    graphviz (0.2.0)
     haml (4.0.7)
       tilt
     haml-rails (0.9.0)
@@ -150,6 +151,7 @@ GEM
     rake (10.5.0)
     rdoc (4.2.1)
       json (~> 1.4)
+    ruby-graphviz (1.2.2)
     ruby_parser (3.7.3)
       sexp_processor (~> 4.1)
     sass (3.4.21)
@@ -217,6 +219,7 @@ DEPENDENCIES
   closure_tree
   coffee-rails (~> 4.1.0)
   factory_girl_rails (~> 4.0)
+  graphviz
   haml-rails
   jbuilder (~> 2.0)
   jquery-rails
@@ -224,6 +227,7 @@ DEPENDENCIES
   mocha
   quiet_assets
   rails (= 4.2.5)
+  ruby-graphviz
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   simplecov

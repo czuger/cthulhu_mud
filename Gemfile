@@ -33,6 +33,8 @@ gem 'unicorn'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'graphviz'
+gem 'ruby-graphviz'
 gem 'closure_tree'
 gem 'haml-rails'
 gem 'yaml_db'

@@ -6,6 +6,12 @@ class Place < ActiveRecord::Base
   has_many :travels, foreign_key: :place_from_id
   has_many :neighbours, class_name: 'Place', foreign_key: :place_to_id, through: :travels, source: :place_to
 
+  # Example : la gare a Arkham
+  def full_location_name
+    parent_string = parent ? parent.name_with_locative_prep : ''
+    name_with_article + ' ' + parent_string
+  end
+
   def name_with_ancestors
     ( [ name ] + ancestors.map{ |e| e.name } ).join( ' - ' )
   end
@@ -32,8 +38,6 @@ class Place < ActiveRecord::Base
   def parent_with_locative_prep
     parent ? parent.name_with_locative_prep : ''
   end
-
-  private
 
   def cleaned_name
     self[:name].downcase.gsub( /[^a-z]/, '_' )

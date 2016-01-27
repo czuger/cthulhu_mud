@@ -38,8 +38,11 @@ module GameBoardSetting::TurnManagement
   end
 
   def generate_portal
-    places_without_portals_ids = Place.leaves.pluck( :id ) - places_with_portal_ids
-    Portal.create( game_board_id: id, place_id: places_without_portals_ids.sample, presage: GameBoard::PRESAGES.sample )
+    portals_count = ( investigators.count.to_f / 2.0 ).ceil
+    1.upto( portals_count ).each do
+      places_without_portals_ids = Place.leaves.pluck( :id ) - places_with_portal_ids
+      Portal.create( game_board_id: id, place_id: places_without_portals_ids.sample, presage: GameBoard::PRESAGES.sample )
+    end
   end
 
   def decrease_destiny

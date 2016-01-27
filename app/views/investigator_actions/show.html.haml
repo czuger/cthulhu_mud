@@ -43,8 +43,9 @@
       %tr
         %th
           Portals locations
-      - @places_with_discovered_portals.each do |place|
+      - @discovered_portals.each do |portal|
         %tr
-          %td= place.name_with_ancestors
+          %td= portal.place.name_with_ancestors
+          %td= portal.presage
 
 
