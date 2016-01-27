@@ -37,6 +37,13 @@ set :linked_files, fetch(:linked_files, []).push( 'config/secrets.yml', 'db/prod
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
+after 'deploy:publishing', 'deploy:restart'
+namespace :deploy do
+  task :restart do
+    invoke 'unicorn:restart'
+  end
+end
+
 namespace :deploy do
 
   after :restart, :clear_cache do
