@@ -7,9 +7,9 @@ namespace :game do
     end
   end
 
-  desc "Call next turn on all boards (every 5 minutes)"
+  desc "Call next turn on all boards (every n minutes)"
   task :next_turn_loop => :environment do
-    wait_time = 5 * 60
+    wait_time = 1 * 60
     while true
       puts "Waiting for #{wait_time.to_f / 60.0} minutes"
       sleep( wait_time )

@@ -1,6 +1,7 @@
 class GameBoard < ActiveRecord::Base
 
-  PRESAGES = [ :comets, :eclipse, :constellation, :star ]
+  PRESAGES = [ :comet, :eclipse, :constellation, :star ]
+  MAX_TURNS = 20
 
   include GameBoardSetting::TurnManagement
 

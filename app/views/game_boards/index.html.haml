@@ -5,6 +5,7 @@
     %tr
       %th
       %th= 'Destiny'
+      %th= 'Turns'
       %th= 'Current presage'
       %th= 'Next presage'
       %th= 'Game board status (open)'
@@ -18,6 +19,7 @@
       %tr
         %td= link_to 'Investigators', game_board_investigators_path( game_board )
         %td= game_board.destiny
+        %td= game_board.turns
         %td= game_board.current_presage
         %td= game_board.next_presage
         %td= game_board.game_board_open

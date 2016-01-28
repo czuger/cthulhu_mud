@@ -24,7 +24,7 @@ module GameBoardSetting::TurnManagement
     if destiny <= 0
       update_attributes( game_board_open: false, end_result: :azatoth_win )
     end
-    if turns >= 10
+    if turns >= GameBoard::MAX_TURNS
       update_attributes( game_board_open: false, end_result: :investigators_wins )
     end
   end
@@ -58,7 +58,10 @@ module GameBoardSetting::TurnManagement
 
   def shift_presage
     update_attribute( :current_presage, next_presage )
-    update_attribute( :next_presage, GameBoard::PRESAGES.sample )
+    current_presage_index = GameBoard::PRESAGES.index( current_presage.to_sym )
+    current_presage_index += 1
+    current_presage_index = 0 if current_presage_index > GameBoard::PRESAGES.count - 1
+    update_attribute( :next_presage, GameBoard::PRESAGES[ current_presage_index ] )
   end
 
 end

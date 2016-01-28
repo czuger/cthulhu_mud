@@ -28,8 +28,8 @@ class GameBoardsController < ApplicationController
   def create
 
     @game_board = GameBoard.new(game_board_params)
-    @game_board.current_presage= GameBoard::PRESAGES.sample
-    @game_board.next_presage= GameBoard::PRESAGES.sample
+    @game_board.current_presage= GameBoard::PRESAGES[ 0 ]
+    @game_board.next_presage= GameBoard::PRESAGES[ 1 ]
     @game_board.destiny= 15
 
     respond_to do |format|
