@@ -4,7 +4,7 @@ working_directory '/var/www/cthulhu_mud/prod/current'
 
 # Unicorn PID file location
 # pid '/path/to/pids/unicorn.pid'
-pid '/var/www/cthulhu_mud/prod/current/tmp/pids/unicorn.pid'
+pid '/home/webapp/www/cthulhu_mud/prod/shared/tmp/sockets/unicorn.pid'
 
 # Path to logs
 # stderr_path '/path/to/log/unicorn.log'
