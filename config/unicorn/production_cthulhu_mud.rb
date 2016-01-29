@@ -13,7 +13,7 @@ stderr_path '/var/www/cthulhu_mud/prod/current/log/unicorn.err'
 stdout_path '/var/www/cthulhu_mud/prod/current/log/unicorn.log'
 
 # Unicorn socket
-listen '/var/www/cthulhu_mud/prod/current/tmp/unicorn.sock'
+listen '/home/webapp/www/cthulhu_mud/prod/shared/tmp/sockets/unicorn.sock'
 
 # Number of processes
 # worker_processes 4
