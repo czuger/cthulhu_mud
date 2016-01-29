@@ -1,7 +1,5 @@
 module InvestigatorsActions::ClueFinding
 
-  # TODO : transformer ces deux actions en game_action, ajouter un timer et garder dans la table action le resultat de l'action (peut être un champs serialisable)
-
   def investigate
     run_action( __method__ )
   end

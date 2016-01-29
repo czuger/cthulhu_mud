@@ -4,7 +4,7 @@ FactoryGirl.define do
       arkham { Place.find_by_name('Arkham') || create(:arkham) }
     end
     place {arkham}
-    in_the_news_headline factory: :in_the_news_headline
+    headline_code :stench
   end
 
 end

@@ -33,7 +33,11 @@ module GameBoardSetting::CluesGeneration
     max_clues = investigators.count - places_where_the_news_says_there_are_clues.count
     clues_places = places_where_there_are_clues.shuffle
     clues_places = clues_places.shift( max_clues )
-    headlines = InTheNewsHeadline.all
+    headlines =  I18n.t( :news_headlines ).keys
+
+    # TODO : replace the in the news headlines model by
+    #
+    # That get all the keys a
 
     clues_places.each do |place|
       next if InTheNewsPlace.find_by_game_board_id_and_place_id( id, place.id )
@@ -41,14 +45,14 @@ module GameBoardSetting::CluesGeneration
         # The information is good, the clue is at the right place
         # @game_board.places_where_the_news_says_there_are_clues << place
         InTheNewsPlace.create(
-          game_board_id: id, place_id: place.id, in_the_news_headline_id: headlines.sample.id )
+          game_board_id: id, place_id: place.id, headline_code: headlines.sample )
       else
         # The information is not at the right place.
         # We find a place near.
         neighbour = place.neighbours.sample
         # @game_board.places_where_the_news_says_there_are_clues << neighbour
         InTheNewsPlace.create(
-          game_board_id: id, place_id: place.id, in_the_news_headline_id: headlines.sample.id )
+          game_board_id: id, place_id: place.id, headline_code: headlines.sample )
 
       end
     end
