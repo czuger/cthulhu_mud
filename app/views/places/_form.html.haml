@@ -11,7 +11,7 @@
     = f.text_field :default_translation
   .field
     = f.label :parent_id
-    = select( :place, :parent_id, Place.where( city: true ).map { |p| [ p.translated_name, p.id ] }, {include_blank: 'None'} )
+    = select( :place, :parent_id, Place.where( city: true ).map { |p| [ p.full_description_name, p.id ] }, {include_blank: 'None'} )
   .field
     = f.label :Masculin
     = f.radio_button( :gender, :m )

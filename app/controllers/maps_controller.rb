@@ -12,11 +12,11 @@ class MapsController < ApplicationController
 
     Place.leaves.each do |place|
       unless places_nodes_hash.has_key?( place.id )
-        places_nodes_hash[ place.id ] = g.add_nodes( place.full_location_name )
+        places_nodes_hash[ place.id ] = g.add_nodes( place.full_description_name )
       end
       place.travels.each do |travel|
         unless places_nodes_hash.has_key?( travel.place_to.id )
-          places_nodes_hash[ travel.place_to.id ] = g.add_nodes( travel.place_to.full_location_name )
+          places_nodes_hash[ travel.place_to.id ] = g.add_nodes( travel.place_to.full_description_name )
         end
         unless set_edges.include?( [ travel.place_to.id, place.id ] )
           g.add_edges( places_nodes_hash[ place.id ], places_nodes_hash[ travel.place_to.id ] )

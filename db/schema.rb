@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160130082609) do
+ActiveRecord::Schema.define(version: 20160130102607) do
 
   create_table "clues", force: :cascade do |t|
     t.integer  "game_board_id", null: false
@@ -105,13 +105,13 @@ ActiveRecord::Schema.define(version: 20160130082609) do
   add_index "place_hierarchies", ["descendant_id"], name: "place_desc_idx"
 
   create_table "places", force: :cascade do |t|
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.integer  "parent_id"
-    t.string   "gender",              null: false
-    t.string   "code",                null: false
-    t.string   "default_translation", null: false
-    t.boolean  "city"
+    t.string   "gender",                              null: false
+    t.string   "code",                                null: false
+    t.string   "default_translation",                 null: false
+    t.boolean  "city",                default: false, null: false
   end
 
   create_table "portals", force: :cascade do |t|
