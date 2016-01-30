@@ -45,7 +45,7 @@ class GameActionTest < ActiveSupport::TestCase
   end
 
   test 'ask_people_deep_in_method' do
-    arkham = Place.find_by_name( 'Arkham' )
+    arkham = Place.find_by_code( 'arkham' )
     investigator = Investigator.find_by_name( 'George Bigot' )
     action = investigator.game_action
     Clue.stubs(:find_by_game_board_id_and_place_id).returns(false)

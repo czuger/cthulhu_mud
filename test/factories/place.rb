@@ -1,14 +1,13 @@
 FactoryGirl.define do
   factory :place do
     gender :p
-    sequence :name do |n|
-      "Random place #{n}"
-    end
     factory :arkham do
-      name 'Arkham'
+      code 'arkham'
+      default_translation 'Arkham'
     end
     factory :kingsport do
-      name 'Kingsport'
+      code 'kingsport'
+      default_translation 'Kingsport'
     end
   end
 end

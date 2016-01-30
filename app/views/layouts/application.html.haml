@@ -8,6 +8,8 @@
   %body
     = link_to 'Game boards', game_boards_path
     |
+    = link_to 'Map', maps_show_path
+    |
     - if @current_game_board
       = link_to 'Game log', game_board_game_board_logs_path( @current_game_board )
       |
@@ -17,7 +19,6 @@
       |
       = link_to 'Show portals', game_board_portals_path( @current_game_board )
       |
-      = link_to 'Map', maps_show_path
     - if admin?
       |
       = link_to 'Places', places_path

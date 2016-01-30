@@ -7,11 +7,11 @@
           %li= msg
 
   .field
-    = f.label :name
-    = f.text_field :name
+    = f.label :default_translation
+    = f.text_field :default_translation
   .field
     = f.label :parent_id
-    = select( :place, :parent_id, Place.all.map { |p| [ p.name, p.id ] }, {include_blank: 'None'} )
+    = select( :place, :parent_id, Place.all.map { |p| [ p.translated_name, p.id ] }, {include_blank: 'None'} )
   .field
     = f.label :Masculin
     = f.radio_button( :gender, :m )

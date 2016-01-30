@@ -28,6 +28,8 @@ class PlacesController < ApplicationController
   def create
     @place = Place.new(place_params)
 
+    @place.code = @place.cleaned_default_translation
+
     respond_to do |format|
       if @place.save
         unless params[ :place ][ :parent_id ].empty?
@@ -79,6 +81,6 @@ class PlacesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def place_params
-      params.require(:place).permit(:name, :gender)
+      params.require(:place).permit(:code, :default_translation, :gender)
     end
 end

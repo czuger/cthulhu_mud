@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :profession do
     transient do
-      arkham { Place.find_by_name('Arkham') || create(:arkham) }
+      arkham { Place.find_by_code('arkham') || create(:arkham) }
     end
     factory :private do
       name "Private"

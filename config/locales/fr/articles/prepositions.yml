@@ -1,0 +1,6 @@
+fr:
+  prepositions:
+    masculin: 'du '
+    feminin: 'de '
+    plural: 'des '
+    prec_by_vowel: "d'"

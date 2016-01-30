@@ -18,7 +18,7 @@ class PlacesControllerTest < ActionController::TestCase
 
   test "should create place" do
     assert_difference('Place.count') do
-      post :create, place: { name: @place.name, parent_id: [], gender: :p }
+      post :create, place: { default_translation: @place.default_translation, parent_id: [], gender: :p }
     end
 
     assert_redirected_to places_path
@@ -35,7 +35,7 @@ class PlacesControllerTest < ActionController::TestCase
   end
 
   test "should update place" do
-    patch :update, id: @place, place: { name: @place.name, parent_id: [] }
+    patch :update, id: @place, place: { code: @place.code, default_translation: @place.default_translation, parent_id: [] }
     assert_redirected_to places_path
   end
 

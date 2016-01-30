@@ -1,11 +1,32 @@
 %p#notice= notice
 
 %p
-  %b Name:
-  = @place.name
+  %b Code:
+  = @place.code
+%p
+  %b Default translation:
+  = @place.default_translation
+%p
+  %b Full location name:
+  = @place.full_location_name
+%p
+  %b Name with article:
+  = @place.name_with_article
+%p
+  %b Name with partitive article:
+  = @place.name_with_partitive_article
+%p
+  %b Name with locative prep:
+  = @place.name_with_locative_prep
+%p
+  %b Name with preposition:
+  = @place.name_with_preposition
 %p
   %b Parent:
-  = @place.parent_id
+  = @place.parent.translated_name if @place.parent
+%p
+  %b Parent with locative prep:
+  = @place.parent_with_locative_prep
 
 = link_to 'Edit', edit_place_path(@place)
 \|
