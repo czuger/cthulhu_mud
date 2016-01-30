@@ -10,8 +10,12 @@ class Place < ActiveRecord::Base
 
   # Example : la gare a Arkham
   def full_description_name
-    parent_string = parent ? parent.name_with_preposition : ''
-    name_with_article + ' ' + parent_string
+    unless city
+      parent_string = parent ? parent.name_with_preposition : ''
+      name_with_article + ' ' + parent_string
+    else
+      translated_name
+    end
   end
 
   # Example : a la gare d'Arkham, aux quais d'Arkham, a Arkham
@@ -51,7 +55,7 @@ class Place < ActiveRecord::Base
 
   # A - a la - au - aux
   def name_with_locative_prep
-    if gender == 'f'
+    if gender == 'f' && !city
       ( locative_prep + ' ' + definite_article + ' ' + translated_name )
     else
       ( locative_prep + ' ' + translated_name )
