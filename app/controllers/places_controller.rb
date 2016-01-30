@@ -16,6 +16,8 @@ class PlacesController < ApplicationController
   def new
     @place = Place.new
     @parents = Place.all
+    puts session[ :last_parent_id ].inspect
+    @place.parent_id = session[ :last_parent_id ]
   end
 
   # GET /places/1/edit
@@ -29,6 +31,9 @@ class PlacesController < ApplicationController
     @place = Place.new(place_params)
 
     @place.code = @place.cleaned_default_translation
+
+    session[ :last_parent_id ] = @place.parent_id
+    puts session[ :last_parent_id ].inspect
 
     respond_to do |format|
       if @place.save
@@ -81,6 +86,6 @@ class PlacesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def place_params
-      params.require(:place).permit(:code, :default_translation, :gender, :city )
+      params.require(:place).permit(:code, :default_translation, :gender, :city, :parent_id )
     end
 end

@@ -8,10 +8,10 @@
 
   .field
     = f.label :place_from
-    = select( :travel, :place_from_id, Place.where( city: false ).map { |p| [ p.full_description_name, p.id ] } )
+    = select( :travel, :place_from_id, @places )
   .field
     = f.label :place_to
-    = select( :travel, :place_to_id, Place.where( city: false ).map { |p| [ p.full_description_name, p.id ] } )
+    = select( :travel, :place_to_id, @places )
   .field
     = f.label :cost
     = f.text_field :cost

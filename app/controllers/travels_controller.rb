@@ -16,16 +16,23 @@ class TravelsController < ApplicationController
   def new
     @travel = Travel.new
     @travel.duration = Time.at( 10 ).utc # We need to start from epoch + 10 sec (default duration)
+    set_places
+    @travel.place_from_id = session[ :last_place_from_id ]
+    @travel.place_to_id = session[ :last_place_to_id ]
   end
 
   # GET /travels/1/edit
   def edit
+    set_places
   end
 
   # POST /travels
   # POST /travels.json
   def create
     @travel = Travel.new(travel_params)
+
+    session[ :last_place_from_id ] = @travel.place_from_id
+    session[ :last_place_to_id ] = @travel.place_to_id
 
     respond_to do |format|
       if @travel.save
@@ -81,5 +88,9 @@ class TravelsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def travel_params
       params.require(:travel).permit(:place_from_id, :place_to_id, :cost, :duration)
+    end
+
+    def set_places
+      @places = Place.where( city: false ).order( 'created_at desc' ).map { |p| [ p.full_description_name, p.id ] }
     end
 end

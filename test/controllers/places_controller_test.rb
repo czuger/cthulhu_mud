@@ -18,7 +18,8 @@ class PlacesControllerTest < ActionController::TestCase
 
   test "should create place" do
     assert_difference('Place.count') do
-      post :create, place: { default_translation: @place.default_translation, parent_id: [], gender: :p }
+      puts @place.inspect
+      post :create, place: { default_translation: @place.default_translation, parent_id: @place.id, gender: :p }
     end
 
     assert_redirected_to places_path
