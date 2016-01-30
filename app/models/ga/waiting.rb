@@ -2,7 +2,7 @@ class Ga::Waiting < GameAction
 
   def print_action_data
     {
-      location_to_print: 'Waiting at ' + location.name_with_ancestors, action: :waiting
+      location_to_print: I18n.t( 'actions_libe.waiting' ) + ' ' + location.full_localisation_name, action: :waiting
     }
   end
 

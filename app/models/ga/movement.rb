@@ -3,7 +3,7 @@ class Ga::Movement < GameAction
   def print_action_data
     travel_eta_int = travel_eta
     {
-      location_to_print: 'On travel to ' + travel.place_to.name_with_ancestors + '. Eta ' ,
+      location_to_print: 'On travel to ' + travel.place_to.full_description_name + '. Eta ' ,
       eta_int: travel_eta_int, eta_str: Time.at( travel_eta ).utc.strftime( '%T' ),
       action: :movement
     }

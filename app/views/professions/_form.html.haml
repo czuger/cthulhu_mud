@@ -11,7 +11,7 @@
     = f.text_field :name
   .field
     = f.label :start_place
-    = f.select( :start_place_id, Place.all.map { |p| [ p.name_with_ancestors, p.id ] } )
+    = f.select( :start_place_id, Place.all.map { |p| [ p.full_description_name, p.id ] } )
   .field
     = f.label :influence
     = f.select( :influence, 0.upto( 6 ).to_a )

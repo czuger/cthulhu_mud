@@ -1,0 +1,7 @@
+fr:
+  actions_libe:
+    ask_people: 'Interroge les personnes'
+    investigation: 'Fait des recherches'
+    find_portal: 'Cherche un portail'
+    close_portal: 'Ferme un portail'
+    waiting: 'En attente'
