@@ -5,18 +5,22 @@ class Ga::Investigate < Ga::AskPeople
     investigation_successful = investigator.make_test( :observation ) > 0
     @action_result = :find_nothing
 
-    if investigation_successful
-      if clue
-        # On a successful observation test, the investigator get the indice
-        ActiveRecord::Base.transaction do
-          #  First we remove this clue
-          clue.destroy
-          investigator.update_attribute( :clues, investigator[ :clues ] + 1 )
+    unless check_for_monster
+      if investigation_successful
+        if clue
+          # On a successful observation test, the investigator get the indice
+          ActiveRecord::Base.transaction do
+            #  First we remove this clue
+            clue.destroy
+            investigator.update_attribute( :clues, investigator[ :clues ] + 1 )
+          end
+          @action_result = :find_clue
+        else
+          @action_result = :no_clue_there
         end
-        @action_result = :find_clue
-      else
-        @action_result = :no_clue_there
       end
+    else
+      @action_result = :blocked_by_monster
     end
   end
 

@@ -16,6 +16,7 @@ class Ga::AskPeople < GameAction
       ActiveRecord::Base.transaction do
         set_action_result
         store_result
+        terminate_action
         wait
       end
     end

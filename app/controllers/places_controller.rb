@@ -16,7 +16,7 @@ class PlacesController < ApplicationController
   def new
     @place = Place.new
     @parents = Place.all
-    puts session[ :last_parent_id ].inspect
+    # puts session[ :last_parent_id ].inspect
     @place.parent_id = session[ :last_parent_id ]
   end
 
@@ -33,7 +33,7 @@ class PlacesController < ApplicationController
     @place.code = @place.cleaned_default_translation
 
     session[ :last_parent_id ] = @place.parent_id
-    puts session[ :last_parent_id ].inspect
+    # puts session[ :last_parent_id ].inspect
 
     respond_to do |format|
       if @place.save

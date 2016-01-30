@@ -7,6 +7,7 @@
       %th Profession
       %th Location
       %th Clues
+      %th Actions
       %th
       %th
       %th
@@ -23,6 +24,7 @@
           %span{ class: :eta_show_area, id: "eta_show_area_#{investigator.id}", eta: action_data[ :eta_int ] }
             = action_data[ :eta_str ]
         %td= investigator.clues
+        %td= investigator.actions_count
         %td= link_to 'Actions', game_board_investigator_investigator_actions_path( @current_game_board, investigator )
         %td= link_to 'Show', [ @current_game_board, investigator ]
         %td= link_to 'Edit', edit_game_board_investigator_path( @current_game_board, investigator )

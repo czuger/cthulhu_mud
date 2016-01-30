@@ -9,6 +9,7 @@ fr:
       find_nothing: "Vous n'avez rien trouvé. Peut être qu'en cherchant mieux ..."
       find_clue: "Vous trouvez un indice."
       no_clue_there: "Il n'y a rien ici. Vous en êtes sur."
+      blocked_by_monster: 'Un monstre malveillant vous fait rebrousser chemin'
     find_portal:
       portal_discovered: "Vous trouvez la localisation d'un portail."
       find_clue: "Vous vous rendez compte que vous n'avez pas assez d'information. Réunissez au moins deux indices."
@@ -16,3 +17,4 @@ fr:
       portal_closed: "A l'aide de votre volontée et des indices que vous avez trouvé, un portail a été fermé."
       no_portal: "Vous cherchiez un portail, mais n'avez rien trouvé. Vous etiez sans doute au mauvais endroit."
       not_enough_clues: "Vous n'avez pas réussi a fermer le portail. Il vous faut au moins 3 indices pour ça"
+      blocked_by_monster: 'Un monstre malveillant vous fait rebrousser chemin'

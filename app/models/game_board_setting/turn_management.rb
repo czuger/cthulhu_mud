@@ -16,9 +16,16 @@ module GameBoardSetting::TurnManagement
     shift_presage
     update_attribute( :turns, turns+1 )
     check_game_end
+    give_investigators_actions_points
   end
 
   private
+
+  def give_investigators_actions_points
+    investigators.each do |investigator|
+      investigator.update_attribute( :actions_count, GameBoard::INVESTIGATORS_ACTIONS_POINTS )
+    end
+  end
 
   def check_game_end
     if destiny <= 0
@@ -42,13 +49,26 @@ module GameBoardSetting::TurnManagement
     portals_count = ( investigators.count.to_f / 2.0 ).ceil
     1.upto( portals_count ).each do
       places_without_portals_ids = Place.leaves.pluck( :id ) - places_with_portal_ids
-      Portal.create( game_board_id: id, place_id: places_without_portals_ids.sample, presage: GameBoard::PRESAGES.sample )
-      generate_monster( 1 )
+      portal = Portal.create!( game_board_id: id, place_id: places_without_portals_ids.sample, presage: GameBoard::PRESAGES.sample )
+      generate_monster( portal, 1 )
     end
   end
 
-  def generate_monster( monster_count )
-
+  def generate_monster( portal, monster_count )
+    monsters_hash = {}
+    monster_hash_inc = 1
+    place = portal.place
+    place.monsters.each do |monster|
+      1.upto( monster.apparition_weight ).each do
+        monsters_hash[ monster_hash_inc ] = monster
+        monster_hash_inc += 1
+      end
+    end
+    1.upto( monster_count ).each do
+      monster_rand = rand( 1 .. monster_hash_inc - 1 )
+      monster = monsters_hash[ monster_rand ]
+      MonsterOnBoard.create!( game_board_id: id, monster_id: monster.id, place_id: place.id, hit_points: monster.hit_points )
+    end
   end
 
   def decrease_destiny

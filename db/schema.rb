@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160130171042) do
+ActiveRecord::Schema.define(version: 20160130185749) do
 
   create_table "clues", force: :cascade do |t|
     t.integer  "game_board_id", null: false
@@ -91,9 +91,23 @@ ActiveRecord::Schema.define(version: 20160130171042) do
     t.integer  "game_board_id",              null: false
     t.integer  "clues",          default: 0, null: false
     t.integer  "game_action_id"
+    t.integer  "actions_count",  default: 3, null: false
   end
 
   add_index "investigators", ["game_action_id"], name: "index_investigators_on_game_action_id"
+
+  create_table "monster_on_boards", force: :cascade do |t|
+    t.integer  "game_board_id", null: false
+    t.integer  "monster_id",    null: false
+    t.integer  "place_id",      null: false
+    t.integer  "hit_points",    null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "monster_on_boards", ["game_board_id"], name: "index_monster_on_boards_on_game_board_id"
+  add_index "monster_on_boards", ["monster_id"], name: "index_monster_on_boards_on_monster_id"
+  add_index "monster_on_boards", ["place_id"], name: "index_monster_on_boards_on_place_id"
 
   create_table "monsters", force: :cascade do |t|
     t.string   "code",                            null: false

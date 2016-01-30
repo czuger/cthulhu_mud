@@ -2,7 +2,7 @@ require 'test_helper'
 
 class MonstersControllerTest < ActionController::TestCase
   setup do
-    @monster = monsters(:one)
+    @monster = create( :monster )
   end
 
   test "should get index" do
@@ -18,7 +18,7 @@ class MonstersControllerTest < ActionController::TestCase
 
   test "should create monster" do
     assert_difference('Monster.count') do
-      post :create, monster: { apparition_weight: @monster.apparition_weight, code: @monster.code, combat: @monster.combat, default_translation: @monster.default_translation, hit_points: @monster.hit_points, horror: @monster.horror }
+      post :create, monster: { apparition_weight: @monster.apparition_weight, code: @monster.code, combat: @monster.combat_test, default_translation: @monster.default_translation, hit_points: @monster.hit_points, horror: @monster.horror }
     end
 
     assert_redirected_to monster_path(assigns(:monster))
@@ -35,7 +35,7 @@ class MonstersControllerTest < ActionController::TestCase
   end
 
   test "should update monster" do
-    patch :update, id: @monster, monster: { apparition_weight: @monster.apparition_weight, code: @monster.code, combat: @monster.combat, default_translation: @monster.default_translation, hit_points: @monster.hit_points, horror: @monster.horror }
+    patch :update, id: @monster, monster: { apparition_weight: @monster.apparition_weight, code: @monster.code, combat: @monster.combat_test, default_translation: @monster.default_translation, hit_points: @monster.hit_points, horror: @monster.horror }
     assert_redirected_to monster_path(assigns(:monster))
   end
 

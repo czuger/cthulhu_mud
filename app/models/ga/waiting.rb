@@ -11,10 +11,12 @@ class Ga::Waiting < GameAction
   end
 
   def move_to( travel )
-    ActiveRecord::Base.transaction do
-      new_action = Ga::Movement.create( travel_id: travel.id, start_time: Time.now )
-      investigator.update_attribute( :game_action_id, new_action.id )
-      self.destroy
+    if investigator.actions_count > 0
+      ActiveRecord::Base.transaction do
+        new_action = Ga::Movement.create( travel_id: travel.id, start_time: Time.now )
+        investigator.update_attribute( :game_action_id, new_action.id )
+        self.destroy
+      end
     end
   end
 
@@ -37,11 +39,12 @@ class Ga::Waiting < GameAction
   private
 
   def action_after_waiting( class_name )
-    ActiveRecord::Base.transaction do
-      new_action = class_name.constantize.create( location_id: location_id, start_time: Time.now )
-      investigator.update_attribute( :game_action_id, new_action.id )
-      self.destroy
+    if investigator.actions_count > 0
+      ActiveRecord::Base.transaction do
+        new_action = class_name.constantize.create( location_id: location_id, start_time: Time.now )
+        investigator.update_attribute( :game_action_id, new_action.id )
+        self.destroy
+      end
     end
   end
-
 end

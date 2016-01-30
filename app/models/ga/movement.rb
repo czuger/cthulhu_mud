@@ -10,7 +10,10 @@ class Ga::Movement < GameAction
   end
 
   def check_action
-    wait if travel_eta <= 0
+    if travel_eta <= 0
+      wait
+      terminate_action
+    end
   end
 
   def wait

@@ -2,6 +2,7 @@ class GameBoard < ActiveRecord::Base
 
   PRESAGES = [ :comet, :eclipse, :constellation, :star ]
   MAX_TURNS = 20
+  INVESTIGATORS_ACTIONS_POINTS = 3
 
   include GameBoardSetting::TurnManagement
 
