@@ -30,9 +30,10 @@ module GameBoardSetting::TurnManagement
   end
 
   def mythos_phase
-    if rand( 1 .. 2 ) == 1
+    if rand( 1 .. 10 ) >= 5
       generate_clues
-    else
+    end
+    if rand( 1 .. 10 ) >= 8
       generate_portal
     end
   end
@@ -42,7 +43,12 @@ module GameBoardSetting::TurnManagement
     1.upto( portals_count ).each do
       places_without_portals_ids = Place.leaves.pluck( :id ) - places_with_portal_ids
       Portal.create( game_board_id: id, place_id: places_without_portals_ids.sample, presage: GameBoard::PRESAGES.sample )
+      generate_monster( 1 )
     end
+  end
+
+  def generate_monster( monster_count )
+
   end
 
   def decrease_destiny

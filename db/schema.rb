@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160130102607) do
+ActiveRecord::Schema.define(version: 20160130171042) do
 
   create_table "clues", force: :cascade do |t|
     t.integer  "game_board_id", null: false
@@ -94,6 +94,27 @@ ActiveRecord::Schema.define(version: 20160130102607) do
   end
 
   add_index "investigators", ["game_action_id"], name: "index_investigators_on_game_action_id"
+
+  create_table "monsters", force: :cascade do |t|
+    t.string   "code",                            null: false
+    t.string   "default_translation",             null: false
+    t.integer  "hit_points",          default: 1, null: false
+    t.integer  "willpower_test",      default: 0, null: false
+    t.integer  "horror",              default: 1, null: false
+    t.integer  "combat_test",         default: 0, null: false
+    t.integer  "damages",             default: 1, null: false
+    t.integer  "apparition_weight",   default: 1, null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  create_table "monsters_places", force: :cascade do |t|
+    t.integer "monster_id", null: false
+    t.integer "place_id",   null: false
+  end
+
+  add_index "monsters_places", ["monster_id"], name: "index_monsters_places_on_monster_id"
+  add_index "monsters_places", ["place_id"], name: "index_monsters_places_on_place_id"
 
   create_table "place_hierarchies", id: false, force: :cascade do |t|
     t.integer "ancestor_id",   null: false

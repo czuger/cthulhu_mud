@@ -9,6 +9,8 @@
       %th Name
       %th Gender
       %th City
+      %th Localisation name
+      %th Monsters
       %th
       %th
       %th
@@ -20,6 +22,7 @@
         %td= place.gender
         %td= place.city
         %td= place.full_localisation_name.capitalize
+        %td= place.monsters.map{ |e| e.name }.join( ',' )
         %td= link_to 'Show', place
         %td= link_to 'Edit', edit_place_path(place)
         %td= link_to 'Destroy', place, :method => :delete, :data => { :confirm => 'Are you sure?' }

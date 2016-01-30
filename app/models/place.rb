@@ -8,6 +8,8 @@ class Place < ActiveRecord::Base
   has_many :travels, foreign_key: :place_from_id
   has_many :neighbours, class_name: 'Place', foreign_key: :place_to_id, through: :travels, source: :place_to
 
+  has_and_belongs_to_many :monsters
+
   # Example : la gare a Arkham
   def full_description_name
     unless city

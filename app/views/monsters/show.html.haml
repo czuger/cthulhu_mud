@@ -1,0 +1,30 @@
+%p#notice= notice
+
+%p
+  %b Code:
+  = @monster.code
+%p
+  %b Default translation:
+  = @monster.default_translation
+%p
+  %b Hit points:
+  = @monster.hit_points
+%p
+  %b Willpower test:
+  = @monster.willpower_test
+%p
+  %b Horror:
+  = @monster.horror
+%p
+  %b Combat test:
+  = @monster.combat_test
+%p
+  %b Damages:
+  = @monster.damages
+%p
+  %b Apparition weight:
+  = @monster.apparition_weight
+
+= link_to 'Edit', edit_monster_path(@monster)
+\|
+= link_to 'Back', monsters_path

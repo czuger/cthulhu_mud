@@ -1,0 +1,35 @@
+%h1 Listing monsters
+
+%table
+  %thead
+    %tr
+      %th Code
+      %th Default translation
+      %th Hit points
+      %th Willpower test
+      %th Horror
+      %th Combat test
+      %th Damages
+      %th Apparition weight
+      %th
+      %th
+      %th
+
+  %tbody
+    - @monsters.each do |monster|
+      %tr
+        %td= monster.code
+        %td= monster.default_translation
+        %td= monster.hit_points
+        %td= monster.willpower_test
+        %td= monster.horror
+        %td= monster.combat_test
+        %td= monster.damages
+        %td= monster.apparition_weight
+        %td= link_to 'Show', monster
+        %td= link_to 'Edit', edit_monster_path(monster)
+        %td= link_to 'Destroy', monster, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Monster', new_monster_path

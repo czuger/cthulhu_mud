@@ -1,0 +1,43 @@
+= submit_tag :select_all, type: :button, id: :select_all
+
+= form_for @monster do |f|
+  - if @monster.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@monster.errors.count, "error")} prohibited this monster from being saved:"
+      %ul
+        - @monster.errors.full_messages.each do |msg|
+          %li= msg
+
+  .actions
+    = f.submit 'Save'
+
+  #monster_form_left
+    .field
+      = f.label :default_translation
+      = f.text_field :default_translation
+    .field
+      = f.label :hit_points
+      = f.number_field :hit_points
+    .field
+      = f.label :willpower_test
+      = f.number_field :willpower_test
+    .field
+      = f.label :horror
+      = f.number_field :horror
+    .field
+      = f.label :combat_test
+      = f.number_field :combat_test
+    .field
+      = f.label :damages
+      = f.number_field :damages
+    .field
+      = f.label :apparition_weight
+      = f.number_field :apparition_weight
+
+  #monster_form_right
+    .field
+      %table
+        - @places.each do |place|
+          %tr
+            %td= f.label place[ 0 ]
+            %td= check_box_tag 'places[]', place[ 1 ], @checked_places.include?( place[ 1 ] ), class: :monster_place_checkbox

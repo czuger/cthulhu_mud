@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :monsters
   get 'maps/show'
 
   resources :game_boards do
