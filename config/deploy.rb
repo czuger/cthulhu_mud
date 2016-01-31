@@ -39,7 +39,7 @@ set :linked_files, fetch(:linked_files, []).push( 'config/secrets.yml', 'db/prod
 after 'deploy:publishing', 'deploy:restart'
 namespace :deploy do
   task :restart do
-    invoke 'legacy_restart'
+    invoke 'deploy:custom_restart'
   end
 
   task :custom_restart do

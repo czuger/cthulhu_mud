@@ -1,5 +1,9 @@
 %h1 Investigator Actions
 
+= button_to 'Investigator', game_board_investigators_path( @current_game_board ), method: :get
+
+%br
+
 #action_actions_div
   %div.action_div
     = @investigator.name
@@ -28,7 +32,12 @@
           News
       - @in_the_news_places.each do |in_the_news|
         %tr
-          %td= news_info( in_the_news )
+          %td
+            - if @discovered_places_ids.include?( in_the_news.id )
+              %strike
+                = news_info( in_the_news )
+            - else
+              = news_info( in_the_news )
 
   %div.action_div
     %table
