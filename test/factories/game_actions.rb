@@ -23,5 +23,10 @@ FactoryGirl.define do
       location {arkham}
       start_time { Time.now - 5000 }
     end
+    factory :combat_monster do
+      type 'Ga::CombatMonster'
+      location {arkham}
+      start_time { Time.now - 5000 }
+    end
   end
 end

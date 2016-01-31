@@ -16,6 +16,10 @@ module InvestigatorsActions::ClueFinding
     run_action( __method__ )
   end
 
+  def combat_monster
+    run_action( __method__ )
+  end
+
   private
 
   def run_action( method )

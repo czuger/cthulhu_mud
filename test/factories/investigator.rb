@@ -1,5 +1,13 @@
 FactoryGirl.define do
   factory :investigator do
+    factory :teddy_smith do
+      name 'Teddy Smith'
+      gender 'm'
+      profession factory: :private
+      influence 4
+      observation 4
+      game_action factory: :combat_monster
+    end
     factory :graham_bell do
       name 'Graham Bell'
       gender 'm'

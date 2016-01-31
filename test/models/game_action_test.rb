@@ -4,8 +4,18 @@ class GameActionTest < ActiveSupport::TestCase
 
   def setup
     @gb = create( :game_board )
-
   end
+
+  test 'combat_monster' do
+    create( 'teddy_smith', game_board: @gb )
+    investigator = Investigator.find_by_name( 'Teddy Smith' )
+    action = investigator.game_action
+    action.print_action_data
+    action.check_action
+    create( :monster_on_board, game_board: @gb )
+    action.check_action
+  end
+
   test 'waiting' do
     investigator = @gb.investigators.first
     travel = Travel.first

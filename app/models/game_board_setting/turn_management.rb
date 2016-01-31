@@ -4,19 +4,23 @@ module GameBoardSetting::TurnManagement
 
   def start_game
     unless started
-      generate_clues
-      generate_portal
-      update_attribute( :started, true )
+      ActiveRecord::Base.transaction do
+        generate_clues
+        generate_portal
+        update_attribute( :started, true )
+      end
     end
   end
 
   def next_turn
-    decrease_destiny
-    mythos_phase
-    shift_presage
-    update_attribute( :turns, turns+1 )
-    check_game_end
-    give_investigators_actions_points
+    ActiveRecord::Base.transaction do
+      decrease_destiny
+      mythos_phase
+      shift_presage
+      update_attribute( :turns, turns+1 )
+      check_game_end
+      give_investigators_actions_points
+    end
   end
 
   private

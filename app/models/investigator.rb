@@ -19,10 +19,11 @@ class Investigator < ActiveRecord::Base
     end
   end
 
-  def make_test( attribute )
+  def make_test( attribute, bonus = 0 )
     # Roll n d6
     successes = 0
-    1.upto( read_attribute( attribute ).to_i ).each do
+    nb_dices = [ read_attribute( attribute ).to_i + bonus, 1 ].min
+    1.upto( nb_dices ).each do
       if rand( 1 .. 6 ) >= 5
         successes += 1
       end

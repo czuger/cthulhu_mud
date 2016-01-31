@@ -36,6 +36,10 @@ class Ga::Waiting < GameAction
     action_after_waiting( 'Ga::ClosePortal' )
   end
 
+  def combat_monster
+    action_after_waiting( 'Ga::CombatMonster' )
+  end
+
   private
 
   def action_after_waiting( class_name )

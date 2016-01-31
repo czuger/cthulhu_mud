@@ -1,5 +1,5 @@
 class InvestigatorsController < ApplicationController
-  before_action :set_investigator, only: [:show, :edit, :update, :destroy, :investigate, :ask_people, :find_portal, :close_portal ]
+  before_action :set_investigator, only: [:show, :edit, :update, :destroy, :investigate, :ask_people, :find_portal, :close_portal, :combat_monster ]
   before_action :set_current_game_board, except: [ :new_name ]
 
   include InvestigatorsActions::Movement
@@ -37,6 +37,10 @@ class InvestigatorsController < ApplicationController
     profession = Profession.find( params[ :investigator ][ :profession_id ] )
     @investigator.influence = profession.influence
     @investigator.observation = profession.observation
+    @investigator.will= profession.will
+    @investigator.combat= profession.combat
+    @investigator.sanity= profession.sanity
+    @investigator.stamina= profession.stamina
     @investigator.game_board = @current_game_board
 
     action = Ga::Waiting.new( location_id: profession.start_place_id )
