@@ -5,21 +5,7 @@
 %br
 
 #action_actions_div
-  %div.action_div
-    = @investigator.name
-    \-
-    Indices :
-    = @investigator.clues
-    \-
-    Actions :
-    = @investigator.actions_count
-  %div.action_div
-    - action_data = @investigator.game_action.print_action_data
-
-    = action_data[ :location_to_print ]
-    %span{ class: :eta_show_area, id: "eta_show_area_#{@investigator.id}", eta: action_data[ :eta_int ] }
-      = action_data[ :eta_str ]
-
+  = render partial: 'investigator'
   = render partial: 'actions'
   = render partial: 'game_status'
   = render partial: 'board_log'
