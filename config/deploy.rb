@@ -39,17 +39,17 @@ set :linked_files, fetch(:linked_files, []).push( 'config/secrets.yml', 'db/prod
 after 'deploy:publishing', 'deploy:restart'
 namespace :deploy do
   task :restart do
-    invoke 'unicorn:legacy_restart'
+    invoke 'legacy_restart'
   end
-end
 
-task :custom_restart do
-  puts 'About to stop unicorn'
-  invoke 'unicorn:stop'
-  sleep( 1 ) # To give unicorn the time to really stop
-  puts 'About to start unicorn'
-  invoke 'unicorn:start'
-  puts 'End starting unicorn'
+  task :custom_restart do
+    puts 'About to stop unicorn'
+    invoke 'unicorn:stop'
+    sleep( 1 ) # To give unicorn the time to really stop
+    puts 'About to start unicorn'
+    invoke 'unicorn:start'
+    puts 'End starting unicorn'
+  end
 end
 
 namespace :deploy do
