@@ -30,7 +30,7 @@ module GameBoardSetting::CluesGeneration
   end
 
   def set_indices_places_in_the_news
-    max_clues = investigators.count - places_where_the_news_says_there_are_clues.count
+    max_clues = investigators.count * 2 # - places_where_the_news_says_there_are_clues.count
     clues_places = places_where_there_are_clues.shuffle
     clues_places = clues_places.shift( max_clues )
     headlines =  I18n.t( :news_headlines ).keys
@@ -41,7 +41,7 @@ module GameBoardSetting::CluesGeneration
 
     clues_places.each do |place|
       next if InTheNewsPlace.find_by_game_board_id_and_place_id( id, place.id )
-      if rand( 100 ) > 20
+      if rand( 100 ) > 30
         # The information is good, the clue is at the right place
         # @game_board.places_where_the_news_says_there_are_clues << place
         InTheNewsPlace.create(

@@ -7,6 +7,7 @@ class GameBoard < ActiveRecord::Base
   include GameBoardSetting::TurnManagement
 
   has_many :investigators, dependent: :destroy
+  has_many :game_action_logs, through: :investigators, class_name: 'GameActionLog'
 
   has_many :clues, dependent: :destroy
   has_many :places_where_there_are_clues, class_name: 'Place', through: :clues, source: :place
