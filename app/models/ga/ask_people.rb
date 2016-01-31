@@ -73,9 +73,5 @@ class Ga::AskPeople < GameAction
     duration - action_elapsed_time
   end
 
-  def action_result( action, location: nil )
-    I18n.t( "actions_results.#{action}", location: location )
-  end
-
 end
 
