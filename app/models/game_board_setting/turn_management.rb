@@ -41,12 +41,18 @@ module GameBoardSetting::TurnManagement
   end
 
   def mythos_phase
+
+    # First remove all found indices from the news
+    cleanup_places_in_the_news
+
+    # Then generate new indices and portals
     if rand( 1 .. 10 ) >= 5
       generate_clues
     end
     if rand( 1 .. 10 ) >= 8
       generate_portal
     end
+
   end
 
   def generate_portal

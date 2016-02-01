@@ -5,8 +5,8 @@
 %br
 
 #action_actions_div
-  = render partial: 'investigator'
   = render partial: 'actions'
+  = render partial: 'investigator'
   = render partial: 'game_status'
   = render partial: 'board_log'
 
@@ -19,7 +19,7 @@
       - @in_the_news_places.each do |in_the_news|
         %tr
           %td
-            - if @discovered_places_ids.include?( in_the_news.id )
+            - if in_the_news.discovered_clue
               %strike
                 = news_info( in_the_news )
             - else
@@ -28,10 +28,11 @@
   %div.action_div
     %table
       %tr
-        %th
+        %th{ colspan: 2 }
           Game actions
       - @game_action_log.each do |log|
         %tr
+          %td= log.updated_at.strftime( '%T' )
           %td
             = t( '.' + log.action_type ) + ' ' + current_location_name( log ) + '.'
             = t( "actions_results.#{log.action_type}.#{log.result_code}", location: result_location_name( log ) )

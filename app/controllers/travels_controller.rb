@@ -15,7 +15,7 @@ class TravelsController < ApplicationController
   # GET /travels/new
   def new
     @travel = Travel.new
-    @travel.duration = Time.at( 10 ).utc # We need to start from epoch + 10 sec (default duration)
+    @travel.duration = Time.at( 5 ).utc # We need to start from epoch + 5 sec (default duration)
     set_places
     @travel.place_from_id = session[ :last_place_from_id ]
     @travel.place_to_id = session[ :last_place_to_id ]

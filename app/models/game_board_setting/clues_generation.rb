@@ -4,9 +4,15 @@ module GameBoardSetting::CluesGeneration
 
   private
 
-  def generate_clues
-    cleanup_places_in_the_news
+  def cleanup_places_in_the_news
+    in_the_news_places.each do |itnp|
+      unless Clue.find_by_game_board_id_and_place_id( id, itnp.place_id )
+        itnp.destroy
+      end
+    end
+  end
 
+  def generate_clues
     places_with_indices_ids = clues.map{ |e| e.place_id }
     avaliable_places = Place.leaves.reject{ |p| places_with_indices_ids.include?( p.id ) }.shuffle
 
@@ -19,14 +25,6 @@ module GameBoardSetting::CluesGeneration
     end
 
     set_indices_places_in_the_news
-  end
-
-  def cleanup_places_in_the_news
-    in_the_news_places.each do |itnp|
-      unless Clue.find_by_game_board_id_and_place_id( id, itnp.place_id )
-        itnp.destroy
-      end
-    end
   end
 
   def set_indices_places_in_the_news

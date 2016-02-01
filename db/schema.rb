@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160131110413) do
+ActiveRecord::Schema.define(version: 20160201102429) do
 
   create_table "clues", force: :cascade do |t|
     t.integer  "game_board_id", null: false
@@ -69,11 +69,12 @@ ActiveRecord::Schema.define(version: 20160131110413) do
   end
 
   create_table "in_the_news_places", force: :cascade do |t|
-    t.integer  "game_board_id", null: false
-    t.integer  "place_id",      null: false
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.string   "headline_code", null: false
+    t.integer  "game_board_id",                   null: false
+    t.integer  "place_id",                        null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.string   "headline_code",                   null: false
+    t.boolean  "discovered_clue", default: false, null: false
   end
 
   add_index "in_the_news_places", ["game_board_id", "place_id"], name: "index_in_the_news_places_on_game_board_id_and_place_id", unique: true
@@ -81,21 +82,23 @@ ActiveRecord::Schema.define(version: 20160131110413) do
   add_index "in_the_news_places", ["place_id"], name: "index_in_the_news_places_on_place_id"
 
   create_table "investigators", force: :cascade do |t|
-    t.string   "name",                       null: false
-    t.string   "gender",                     null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.integer  "profession_id",              null: false
-    t.integer  "influence",                  null: false
-    t.integer  "observation",                null: false
-    t.integer  "game_board_id",              null: false
-    t.integer  "clues",          default: 0, null: false
+    t.string   "name",                           null: false
+    t.string   "gender",                         null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "profession_id",                  null: false
+    t.integer  "influence",                      null: false
+    t.integer  "observation",                    null: false
+    t.integer  "game_board_id",                  null: false
+    t.integer  "clues",          default: 0,     null: false
     t.integer  "game_action_id"
-    t.integer  "actions_count",  default: 3, null: false
-    t.integer  "sanity",         default: 5, null: false
-    t.integer  "stamina",        default: 5, null: false
-    t.integer  "will",           default: 2, null: false
-    t.integer  "combat",         default: 2, null: false
+    t.integer  "actions_count",  default: 3,     null: false
+    t.integer  "sanity",         default: 5,     null: false
+    t.integer  "stamina",        default: 5,     null: false
+    t.integer  "will",           default: 2,     null: false
+    t.integer  "combat",         default: 2,     null: false
+    t.boolean  "mad",            default: false, null: false
+    t.boolean  "dead",           default: false, null: false
   end
 
   add_index "investigators", ["game_action_id"], name: "index_investigators_on_game_action_id"

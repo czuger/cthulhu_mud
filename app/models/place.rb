@@ -57,10 +57,18 @@ class Place < ActiveRecord::Base
 
   # A - a la - au - aux
   def name_with_locative_prep
-    if gender == 'f' && !city
-      ( locative_prep + ' ' + definite_article + ' ' + translated_name )
-    else
+    if city
       ( locative_prep + ' ' + translated_name )
+    elsif gender == 'f'
+      ( locative_prep + ' ' + definite_article + translated_name )
+    elsif gender == 'm'
+      vowels = I18n.t( 'vowels' )
+      place_name = translated_name
+      if vowels.include?( place_name[ 0 ].downcase )
+        ( locative_prep + ' ' + definite_article + translated_name )
+      else
+        ( locative_prep + ' ' + translated_name )
+      end
     end
   end
 

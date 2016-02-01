@@ -31,6 +31,14 @@ class Investigator < ActiveRecord::Base
     successes
   end
 
+  def has_actions
+    actions_count > 0 && !incapacited
+  end
+
+  def incapacited
+    mad || dead
+  end
+
   private
 
 end

@@ -61,7 +61,14 @@ class Ga::AskPeople < GameAction
 
   def wait
     ActiveRecord::Base.transaction do
-      new_action = Ga::Waiting.create( location_id: location_id, travel_id: nil, start_time: Time.now )
+      final_location_id = location_id
+      if investigator.dead
+        final_location_id = Place.find_by_code( 'hopital_sainte_marie' ).id
+      end
+      if investigator.mad
+        final_location_id = Place.find_by_code( 'asylum' ).id
+      end
+      new_action = Ga::Waiting.create( location_id: final_location_id, travel_id: nil, start_time: Time.now )
       investigator.update_attribute( :game_action_id, new_action.id )
       self.destroy
     end

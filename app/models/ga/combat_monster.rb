@@ -23,6 +23,9 @@ class Ga::CombatMonster < Ga::AskPeople
           if combat_test_result < monster.damages
             # We check if investigator take damages
             investigator.decrement( :stamina, monster.damages - combat_test_result )
+            if investigator.stamina <= 0
+              investigator.update_attribute( :dead, true )
+            end
           end
           # In any cases, the monster take damages
           monster_on_board.decrement( :hit_points, combat_test_result )
@@ -39,6 +42,7 @@ class Ga::CombatMonster < Ga::AskPeople
           end
         else
           @action_result = :investigator_goes_mad
+          investigator.update_attribute( :mad, true )
         end
       end
     else

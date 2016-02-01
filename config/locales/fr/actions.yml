@@ -5,3 +5,5 @@ fr:
     find_portal: 'Cherche un portail'
     close_portal: 'Ferme un portail'
     waiting: 'En attente'
+    dead: 'Mort'
+    mad: 'Fou'
