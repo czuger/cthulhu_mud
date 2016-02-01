@@ -25,6 +25,7 @@ class Ga::CombatMonster < Ga::AskPeople
             investigator.decrement( :stamina, monster.damages - combat_test_result )
             if investigator.stamina <= 0
               investigator.update_attribute( :dead, true )
+              investigator.update_attribute( :actions_count, 0 )
             end
           end
           # In any cases, the monster take damages

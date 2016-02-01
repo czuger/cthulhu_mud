@@ -17,7 +17,12 @@
     - @investigators.each do |investigator|
       - action_data = investigator.game_action.print_action_data
       %tr
-        %td= investigator.name
+        %td
+          - if investigator.incapacited
+            %strike
+              = investigator.name
+          - else
+            = investigator.name
         %td= investigator.profession.name
         %td
           = action_data[ :location_to_print ]

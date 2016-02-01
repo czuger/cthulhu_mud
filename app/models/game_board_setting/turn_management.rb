@@ -26,7 +26,7 @@ module GameBoardSetting::TurnManagement
   private
 
   def give_investigators_actions_points
-    investigators.each do |investigator|
+    avaliable_investigators.each do |investigator|
       investigator.update_attribute( :actions_count, GameBoard::INVESTIGATORS_ACTIONS_POINTS )
     end
   end

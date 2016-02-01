@@ -7,6 +7,8 @@ class GameBoard < ActiveRecord::Base
   include GameBoardSetting::TurnManagement
 
   has_many :investigators, dependent: :destroy
+  has_many :avaliable_investigators, -> { where( mad: false, dead: false ) }, class_name: 'Investigator', foreign_key: :game_board_id
+
   has_many :game_action_logs, through: :investigators, class_name: 'GameActionLog'
 
   has_many :clues, dependent: :destroy

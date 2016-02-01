@@ -16,7 +16,7 @@ class GameAction < ActiveRecord::Base
     investigator.update_attribute( :actions_count, investigator.actions_count - 1 )
     game_board = investigator.game_board
     actions_points_count = 0
-    game_board.investigators.each do |investigator|
+    game_board.avaliable_investigators.each do |investigator|
       actions_points_count += investigator.actions_count
     end
     if actions_points_count <= 0

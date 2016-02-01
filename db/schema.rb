@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160201102429) do
+ActiveRecord::Schema.define(version: 20160201160311) do
 
   create_table "clues", force: :cascade do |t|
     t.integer  "game_board_id", null: false
@@ -154,6 +154,7 @@ ActiveRecord::Schema.define(version: 20160201102429) do
     t.string   "code",                                null: false
     t.string   "default_translation",                 null: false
     t.boolean  "city",                default: false, null: false
+    t.boolean  "well_known_place",    default: false, null: false
   end
 
   create_table "portals", force: :cascade do |t|

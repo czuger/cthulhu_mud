@@ -1,0 +1,6 @@
+fr:
+  spatial_preposition_building_or_place:
+    masculin: 'au '
+    feminin: 'a la '
+    plural: 'aux '
+    prec_by_vowel: "a l'"

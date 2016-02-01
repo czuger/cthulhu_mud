@@ -1,3 +1,13 @@
+class String
+  def capitalize_first
+    (slice(0) || '').upcase + (slice(1..-1) || '')
+  end
+
+  def capitalize_first!
+    replace(capitalize_first)
+  end
+end
+
 class Place < ActiveRecord::Base
 
   include Language::Articles
@@ -14,7 +24,7 @@ class Place < ActiveRecord::Base
   def full_description_name
     unless city
       parent_string = parent ? parent.name_with_preposition : ''
-      name_with_article + ' ' + parent_string
+      ( name_with_article + ' ' + parent_string ).capitalize_first
     else
       translated_name
     end
@@ -22,8 +32,12 @@ class Place < ActiveRecord::Base
 
   # Example : a la gare d'Arkham, aux quais d'Arkham, a Arkham
   def full_localisation_name
-    parent_string = parent ? parent.name_with_preposition : ''
-    name_with_locative_prep + ' ' + parent_string
+    if well_known_place
+      parent_string = parent ? ' ' + parent.name_with_preposition : ''
+    else
+      parent_string = parent ? ', ' + parent.name_with_spatial_preposition_building_or_place : ''
+    end
+    name_with_spatial_preposition_building_or_place + parent_string
   end
 
   def parent_with_locative_prep
@@ -36,7 +50,32 @@ class Place < ActiveRecord::Base
 
   # De, du, d'
   def name_with_preposition
-    ( preposition + translated_name )
+    if city
+      ( preposition + translated_name.capitalize )
+    else
+      ( preposition + translated_name )
+    end
+  end
+
+  # A - a la - au - aux
+  def name_with_spatial_preposition_building_or_place
+    result = ( locative_prep + ' ' + translated_name )
+
+    unless city
+      if gender == 'f'
+        result = ( locative_prep + ' ' + definite_article + translated_name )
+      elsif gender == 'm'
+        vowels = I18n.t( 'vowels' )
+        place_name = translated_name
+        if vowels.include?( place_name[ 0 ].downcase )
+          result = ( 'a' + ' ' + definite_article + translated_name )
+        end
+      end
+    else
+      result = ( locative_prep + ' ' + translated_name.capitalize )
+    end
+
+    result
   end
 
   private
@@ -52,24 +91,7 @@ class Place < ActiveRecord::Base
 
   # Du - de - la - de l'
   def name_with_partitive_article
-    partitive_article + translated_name
-  end
-
-  # A - a la - au - aux
-  def name_with_locative_prep
-    if city
-      ( locative_prep + ' ' + translated_name )
-    elsif gender == 'f'
-      ( locative_prep + ' ' + definite_article + translated_name )
-    elsif gender == 'm'
-      vowels = I18n.t( 'vowels' )
-      place_name = translated_name
-      if vowels.include?( place_name[ 0 ].downcase )
-        ( locative_prep + ' ' + definite_article + translated_name )
-      else
-        ( locative_prep + ' ' + translated_name )
-      end
-    end
+    partitive_article + translated_name.capitalize
   end
 
   def cleaned_code

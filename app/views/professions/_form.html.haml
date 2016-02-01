@@ -6,17 +6,43 @@
         - @profession.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :start_place
-    = f.select( :start_place_id, Place.all.map { |p| [ p.full_description_name, p.id ] } )
-  .field
-    = f.label :influence
-    = f.select( :influence, 0.upto( 6 ).to_a )
-  .field
-    = f.label :observation
-    = f.select( :observation, 0.upto( 6 ).to_a )
+  %table
+    %tr
+      %td= f.label :name
+      %td= f.text_field :name
+    %tr
+      %td= f.label :start_place
+      %td= f.select( :start_place_id, Place.all.map { |p| [ p.full_description_name, p.id ] } )
+    %tr
+      %td= f.label :sanity
+      %td= f.select( :sanity, 1.upto( 10 ).to_a, {}, { class: :health_selector } )
+    %tr
+      %td= f.label :stamina
+      %td= f.select( :stamina, 1.upto( 10 ).to_a, {}, { class: :health_selector }  )
+    %tr
+      %td= 'Points restants'
+      %td
+        %span#health_remaining_points
+          0
+    %tr
+      %td= f.label :influence
+      %td= f.select( :influence, 0.upto( 6 ).to_a, {}, { class: :comp_selector }  )
+    %tr
+      %td= f.label :observation
+      %td= f.select( :observation, 0.upto( 6 ).to_a, {}, { class: :comp_selector }  )
+    %tr
+      %td= f.label :will
+      %td= f.select( :will, 0.upto( 6 ).to_a, {}, { class: :comp_selector }  )
+    %tr
+      %td= f.label :combat
+      %td= f.select( :combat, 0.upto( 6 ).to_a, {}, { class: :comp_selector }  )
+    %tr
+      %td= 'Points restants'
+      %td
+        %span#comp_remaining_points
+          0
   .actions
     = f.submit 'Save'
+
+= hidden_field_tag( :comp_points, Profession::COMP_POINTS )
+= hidden_field_tag( :health_points, Profession::HEALTH_POINTS )
