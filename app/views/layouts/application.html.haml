@@ -6,27 +6,35 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    = link_to 'Game boards', game_boards_path
-    |
-    = link_to 'Map', maps_show_path
-    |
-    - if @current_game_board
-      = link_to 'Game log', game_board_game_board_logs_path( @current_game_board )
-      |
-      = link_to 'Investigators', game_board_investigators_path( @current_game_board )
-      |
-      = link_to 'Read the news', game_board_in_the_news_path( @current_game_board )
-      |
-      = link_to 'Show portals', game_board_portals_path( @current_game_board )
-      |
-    - if admin?
-      |
-      = link_to 'Places', places_path
-      |
-      = link_to 'Travels', travels_path
-      |
-      = link_to 'Profession', professions_path
-      |
-      = link_to 'Monster', monsters_path
+    .container
+      %nav.navbar.navbar-default
+        %div{ class: 'container-fluid' }
+          %ul.nav.navbar-nav
+            %li.active
+              = link_to 'Game boards', game_boards_path
+            %li
+              = link_to 'Map', maps_show_path
+    -#
+    -#|
+    -#= link_to 'Map', maps_show_path
+    -#|
+    -#- if @current_game_board
+    -#  = link_to 'Game log', game_board_game_board_logs_path( @current_game_board )
+    -#  |
+    -#  = link_to 'Investigators', game_board_investigators_path( @current_game_board )
+    -#  |
+    -#  = link_to 'Read the news', game_board_in_the_news_path( @current_game_board )
+    -#  |
+    -#  = link_to 'Show portals', game_board_portals_path( @current_game_board )
+    -#  |
+    -#- if admin?
+    -#  |
+    -#  = link_to 'Places', places_path
+    -#  |
+    -#  = link_to 'Travels', travels_path
+    -#  |
+    -#  = link_to 'Profession', professions_path
+    -#  |
+    -#  = link_to 'Monster', monsters_path
 
     = yield
