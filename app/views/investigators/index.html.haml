@@ -30,7 +30,7 @@
             = action_data[ :eta_str ]
         %td= investigator.clues
         %td= investigator.actions_count
-        %td= button_to 'Actions', game_board_investigator_investigator_actions_path( @current_game_board, investigator ), method: :get, class: 'btn btn-default btn-xs' unless investigator.incapacited
+        %td= button_to 'Actions', game_board_investigator_investigator_actions_path( @current_game_board, investigator ), method: :get, class: 'btn btn-default' unless investigator.incapacited
         %td= link_to 'Show', [ @current_game_board, investigator ]
         %td= link_to 'Edit', edit_game_board_investigator_path( @current_game_board, investigator )
         %td= link_to 'Destroy', [ @current_game_board, investigator ], :method => :delete, :data => { :confirm => 'Are you sure?' }
