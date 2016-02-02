@@ -1,30 +1,29 @@
-%div.action_div
-  %table
-    %tr
-      %th{ colspan: 4 }= @investigator.name
-    %tr
-      %td{ colspan: 4 }
-        - action_data = @investigator.game_action.print_action_data
-        = action_data[ :location_to_print ]
-        %span{ class: :eta_show_area, id: "eta_show_area_#{@investigator.id}", eta: action_data[ :eta_int ] }
-          = action_data[ :eta_str ]
-    %tr
-      %td= 'Indices'
-      %td= @investigator.clues
-      %td= 'Actions'
-      %td= @investigator.actions_count
-    %tr
-      %td= 'Sanity'
-      %td= @investigator.sanity
-      %td= 'Stamina'
-      %td= @investigator.stamina
-    %tr
-      %td= 'Observation'
-      %td= @investigator.observation
-      %td= 'Influence'
-      %td= @investigator.influence
-    %tr
-      %td= 'Volontée'
-      %td= @investigator.will
-      %td= 'Combat'
-      %td= @investigator.combat
+%table.table
+  %tr
+    %th{ colspan: 4 }= @investigator.name
+  %tr
+    %td{ colspan: 4 }
+      - action_data = @investigator.game_action.print_action_data
+      = action_data[ :location_to_print ]
+      %span{ class: :eta_show_area, id: "eta_show_area_#{@investigator.id}", eta: action_data[ :eta_int ] }
+        = action_data[ :eta_str ]
+  %tr
+    %td= 'Indices'
+    %td= @investigator.clues
+    %td= 'Actions'
+    %td= @investigator.actions_count
+  %tr
+    %td= 'Sanity'
+    %td= @investigator.sanity
+    %td= 'Stamina'
+    %td= @investigator.stamina
+  %tr
+    %td= 'Observation'
+    %td= @investigator.observation
+    %td= 'Influence'
+    %td= @investigator.influence
+  %tr
+    %td= 'Volontée'
+    %td= @investigator.will
+    %td= 'Combat'
+    %td= @investigator.combat

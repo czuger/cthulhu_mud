@@ -1,44 +1,49 @@
-%h1 Investigator Actions
+.container
 
-= button_to 'Investigator', game_board_investigators_path( @current_game_board ), method: :get, class: 'btn btn-default btn-xs'
+  %h3 Investigator Actions
 
-%br
+  = button_to 'Investigator', game_board_investigators_path( @current_game_board ), method: :get, class: 'btn btn-default btn-xs'
 
-#action_actions_div
-  = render partial: 'actions'
-  = render partial: 'investigator'
-  = render partial: 'game_status'
-  = render partial: 'board_log'
-
-#action_logs_div
-  %div.action_div
-    %table
-      %tr
-        %th
-          News
-      - @in_the_news_places.each do |in_the_news|
+  .row
+    .col-lg-6
+      = render partial: 'actions'
+    .col-lg-6
+      %table.table
         %tr
-          %td
-            - if in_the_news.discovered_clue
-              %strike
+          %th
+            News
+        - @in_the_news_places.each do |in_the_news|
+          %tr
+            %td
+              - if in_the_news.discovered_clue
+                %strike
+                  = news_info( in_the_news )
+              - else
                 = news_info( in_the_news )
-            - else
-              = news_info( in_the_news )
 
-  %div.action_div
-    %table
-      %tr
-        %th{ colspan: 2 }
-          Game actions
-      - @game_action_log.each do |log|
+  .row
+    .col-lg-6
+      = render partial: 'investigator'
+    .col-lg-6
+      %table.table
         %tr
-          %td= log.updated_at.strftime( '%T' )
-          %td
-            = t( '.' + log.action_type ) + ' ' + current_location_name( log ) + '.'
-            = t( "actions_results.#{log.action_type}.#{log.result_code}", location: result_location_name( log ) )
+          %th{ colspan: 2 }
+            Game actions
+        - @game_action_log.each do |log|
+          %tr
+            %td= log.updated_at.strftime( '%T' )
+            %td
+              = t( '.' + log.action_type ) + ' ' + current_location_name( log ) + '.'
+              = t( "actions_results.#{log.action_type}.#{log.result_code}", location: result_location_name( log ) )
 
-  %div.action_div
-    %table
+  .row
+    .col-lg-6
+      = render partial: 'game_status'
+    .col-lg-6
+      = render partial: 'board_log'
+
+  .row
+    %table.table
       %tr
         %th
           Portals locations
