@@ -14,27 +14,24 @@
               = link_to 'Game boards', game_boards_path
             %li
               = link_to 'Map', maps_show_path
-    -#
-    -#|
-    -#= link_to 'Map', maps_show_path
-    -#|
-    -#- if @current_game_board
-    -#  = link_to 'Game log', game_board_game_board_logs_path( @current_game_board )
-    -#  |
-    -#  = link_to 'Investigators', game_board_investigators_path( @current_game_board )
-    -#  |
-    -#  = link_to 'Read the news', game_board_in_the_news_path( @current_game_board )
-    -#  |
-    -#  = link_to 'Show portals', game_board_portals_path( @current_game_board )
-    -#  |
-    -#- if admin?
-    -#  |
-    -#  = link_to 'Places', places_path
-    -#  |
-    -#  = link_to 'Travels', travels_path
-    -#  |
-    -#  = link_to 'Profession', professions_path
-    -#  |
-    -#  = link_to 'Monster', monsters_path
+            - if @current_game_board
+              %li
+                = link_to 'Game log', game_board_game_board_logs_path( @current_game_board )
+              %li
+                = link_to 'Investigators', game_board_investigators_path( @current_game_board )
+              %li
+                = link_to 'Read the news', game_board_in_the_news_path( @current_game_board )
+              %li
+                = link_to 'Show portals', game_board_portals_path( @current_game_board )
+            - if admin?
+              %li
+                = link_to 'Places', places_path
+              %li
+                = link_to 'Travels', travels_path
+              %li
+                = link_to 'Profession', professions_path
+              %li
+                = link_to 'Monster', monsters_path
 
-    = yield
+    .container
+      = yield

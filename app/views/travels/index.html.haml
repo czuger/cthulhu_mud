@@ -1,8 +1,8 @@
-%h1 Listing travels
+%h3 Listing travels
 
-= link_to 'New Travel', new_travel_path
+= button_to 'New Travel', new_travel_path, method: :get, class: 'btn btn-default'
 
-%table
+%table.table
   %thead
     %tr
       %th Place from
@@ -26,4 +26,4 @@
 
 %br
 
-= link_to 'New Travel', new_travel_path
+= button_to 'New Travel', new_travel_path, method: :get, class: 'btn btn-default'

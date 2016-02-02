@@ -1,9 +1,9 @@
-%h1 Listing places
+%h3 Listing places
 
 
-= link_to 'New Place', new_place_path
+= button_to 'New Place', new_place_path, method: :get, class: 'btn btn-default'
 
-%table
+%table.table
   %thead
     %tr
       %th Name
@@ -31,4 +31,4 @@
 
 %br
 
-= link_to 'New Place', new_place_path
+= button_to 'New Place', new_place_path, method: :get, class: 'btn btn-default'

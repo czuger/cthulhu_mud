@@ -1,6 +1,6 @@
-= submit_tag :select_all, type: :button, id: :select_all
+= submit_tag :select_all, type: :button, id: :select_all, class: 'btn btn-default'
 
-= form_for @monster do |f|
+= form_for @monster, html: { class: 'form-horizontal' } do |f|
   - if @monster.errors.any?
     #error_explanation
       %h2= "#{pluralize(@monster.errors.count, "error")} prohibited this monster from being saved:"
@@ -9,35 +9,41 @@
           %li= msg
 
   .actions
-    = f.submit 'Save'
+    = f.submit 'Save', class: 'btn btn-default'
 
-  #monster_form_left
-    .field
-      = f.label :default_translation
-      = f.text_field :default_translation
-    .field
-      = f.label :hit_points
-      = f.number_field :hit_points
-    .field
-      = f.label :willpower_test
-      = f.number_field :willpower_test
-    .field
-      = f.label :horror
-      = f.number_field :horror
-    .field
-      = f.label :combat_test
-      = f.number_field :combat_test
-    .field
-      = f.label :damages
-      = f.number_field :damages
-    .field
-      = f.label :apparition_weight
-      = f.number_field :apparition_weight
+  .row
+    .col-lg-4
+      .form-group
+        = f.label :default_translation, class: 'col-sm-5 control-label'
+        .col-sm-7
+          = f.text_field :default_translation, class: 'form-control'
+      .form-group
+        = f.label :hit_point, class: 'col-sm-9 control-label'
+        .col-sm-3
+          = f.number_field :hit_points, class: 'form-control'
+      .field
+        = f.label :willpower_test
+        = f.number_field :willpower_test
+      .field
+        = f.label :horror
+        = f.number_field :horror
+      .field
+        = f.label :combat_test
+        = f.number_field :combat_test
+      .field
+        = f.label :damages
+        = f.number_field :damages
+      .field
+        = f.label :apparition_weight
+        = f.number_field :apparition_weight
 
-  #monster_form_right
-    .field
-      %table
-        - @places.each do |place|
-          %tr
-            %td= f.label place[ 0 ]
-            %td= check_box_tag 'places[]', place[ 1 ], @checked_places.include?( place[ 1 ] ), class: :monster_place_checkbox
+    - if @places.size > 0
+      - @places.each_slice( ( @places.size / 2.0 ).ceil ) do |places_in_column|
+
+        .col-lg-3
+          .field
+            %table
+              - places_in_column.each do |place|
+                %tr
+                  %td= f.label place[ 0 ]
+                  %td= check_box_tag 'places[]', place[ 1 ], @checked_places.include?( place[ 1 ] ), class: :monster_place_checkbox

@@ -1,7 +1,6 @@
-%h1 Editing monster
+%h3 Editing monster
 
-= render 'form'
+  = render 'form'
 
-= link_to 'Show', @monster
-\|
-= link_to 'Back', monsters_path
+  = button_to 'Show', @monster, method: :get, class: 'btn btn-default'
+  = button_to 'Back', monsters_path, method: :get, class: 'btn btn-default'

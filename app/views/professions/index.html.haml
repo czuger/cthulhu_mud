@@ -1,6 +1,8 @@
-%h1 Listing professions
+%h3 Listing professions
 
-%table
+= button_to 'New Profession', new_profession_path, method: :get, class: 'btn btn-default'
+
+%table.table
   %thead
     %tr
       %th Name
@@ -20,4 +22,4 @@
 
 %br
 
-= link_to 'New Profession', new_profession_path
+= button_to 'New Profession', new_profession_path, method: :get, class: 'btn btn-default'
