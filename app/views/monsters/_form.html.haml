@@ -1,5 +1,3 @@
-= submit_tag :select_all, type: :button, id: :select_all, class: 'btn btn-default'
-
 = form_for @monster, html: { class: 'form-horizontal' } do |f|
   - if @monster.errors.any?
     #error_explanation
@@ -10,6 +8,7 @@
 
   .actions
     = f.submit 'Save', class: 'btn btn-default'
+    = submit_tag :select_all, type: :button, id: :select_all, class: 'btn btn-default', data: {disable_with: "Submitting..."}
 
   .row
     .col-lg-4
@@ -17,25 +16,37 @@
         = f.label :default_translation, class: 'col-sm-5 control-label'
         .col-sm-7
           = f.text_field :default_translation, class: 'form-control'
+
       .form-group
         = f.label :hit_point, class: 'col-sm-9 control-label'
         .col-sm-3
           = f.number_field :hit_points, class: 'form-control'
-      .field
-        = f.label :willpower_test
-        = f.number_field :willpower_test
-      .field
-        = f.label :horror
-        = f.number_field :horror
-      .field
-        = f.label :combat_test
-        = f.number_field :combat_test
-      .field
-        = f.label :damages
-        = f.number_field :damages
-      .field
-        = f.label :apparition_weight
-        = f.number_field :apparition_weight
+
+      .form-group
+        = f.label :willpower_test, class: 'col-sm-9 control-label'
+        .col-sm-3
+          = f.number_field :willpower_test, class: 'form-control'
+
+      .form-group
+        = f.label :horror, class: 'col-sm-9 control-label'
+        .col-sm-3
+          = f.number_field :horror, class: 'form-control'
+
+      .form-group
+        = f.label :combat_test, class: 'col-sm-9 control-label'
+        .col-sm-3
+          = f.number_field :combat_test, class: 'form-control'
+
+      .form-group
+        = f.label :damages, class: 'col-sm-9 control-label'
+        .col-sm-3
+          = f.number_field :damages, class: 'form-control'
+
+      .form-group
+        = f.label :apparition_weight, class: 'col-sm-9 control-label'
+        .col-sm-3
+          = f.number_field :apparition_weight, class: 'form-control'
+
 
     - if @places.size > 0
       - @places.each_slice( ( @places.size / 2.0 ).ceil ) do |places_in_column|

@@ -1,0 +1,17 @@
+- Show all the monsters in a place in action tab + a link to show the monster stats (show monster)
+
+- Add objects (simple : only comp bonus)
+- Add salary (given each turn directly to investigator)
+- Influence allow to negotiate prices : 5% rebate per success (max 50%)
+
+- Buff ask people :
+ - 1 success = same work as today
+ - 2+ success = get a number of indices equal to the number of success in all the nearby location (you make people work for you)
+
+- Add taxis : allow 3 moves in one. Must pay for that, but influence can negotiate the price.
+ - This is a random event (10% chance)
+
+- Remove actions that are unavaliable.
+
+http://getbootstrap.com/getting-started/#examples
+http://www.w3schools.com/bootstrap/

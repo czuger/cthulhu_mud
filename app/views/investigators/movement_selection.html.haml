@@ -10,5 +10,5 @@
     - @travels.each do |travel|
       %tr
         %td= destination( travel )
-        %td= button_to 'Start travel', game_board_investigator_move_start_path( @current_game_board, @investigator, travel_destination: travel.id )
+        %td= button_to 'Start travel', game_board_investigator_move_start_path( @current_game_board, @investigator, travel_destination: travel.id ), class: 'btn btn-default'
 
