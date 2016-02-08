@@ -87,4 +87,9 @@ class InvestigatorsControllerTest < ActionController::TestCase
     assert_redirected_to game_board_investigators_url( assigns( :current_game_board ) )
   end
 
+  test "should combat a monster" do
+    get :combat_monster, game_board_id: @game_board, investigator_id: @investigator
+    assert_redirected_to game_board_investigators_url( assigns( :current_game_board ) )
+  end
+
 end

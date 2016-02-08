@@ -49,7 +49,7 @@ module GameBoardSetting::TurnManagement
     if rand( 1 .. 10 ) >= 5
       generate_clues
     end
-    if rand( 1 .. 10 ) >= 8
+    if rand( 1 .. 10 ) >= 2
       generate_portal
     end
 

@@ -26,4 +26,7 @@ class GameBoard < ActiveRecord::Base
   has_many :portals, dependent: :destroy
   has_many :game_board_logs, -> { order 'created_at desc' }, dependent: :destroy
 
+  has_many :monster_on_boards
+  has_many :monsters, class_name: 'Monster', through: :monster_on_boards, source: :monster
+
 end

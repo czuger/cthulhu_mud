@@ -1,83 +1,44 @@
-class Ga::AskPeople < GameAction
-
-  ACTION_DURATION = 5
-
-  def print_action_data
-    action_eta_int = action_eta
-    {
-      location_to_print: location.full_localisation_name,
-      eta_int: action_eta_int, eta_str: Time.at( action_eta_int ).utc.strftime( '%T' ),
-      action: get_action_name
-    }
-  end
-
-  def check_action
-    if action_eta <= 0
-      ActiveRecord::Base.transaction do
-        set_action_result
-        store_result
-        terminate_action
-        wait
-      end
-    end
-  end
-
-  # Caution : CONSTANT won't work there. Not overloaded by heritage.
-  def get_action_name
-    :ask_people
-  end
+class Ga::AskPeople < Ga::BaseAction
 
   private
 
   def set_action_result
-    asking_successful = investigator.make_test( :influence ) > 0
+    nb_successes = investigator.make_test( :influence )
 
-    if asking_successful
-      clue = Clue.find_by_game_board_id_and_place_id( investigator.game_board_id, location_id )
-      if clue
-        @action_result = :it_is_here
-      else
-        location.neighbours.each do |neighbour|
-          clue = Clue.find_by_game_board_id_and_place_id( investigator.game_board_id, neighbour.id )
-          if clue
-            @action_result = :clue_position
-            @result_location_id = neighbour.id
-            return
-          end
-        end
+    if nb_successes == 0
+      @action_result = :bad_asking
+    elsif nb_successes == 1
+      clues = get_local_and_nearby_clues
+      if clues.empty?
         @action_result = :i_dont_know
+      else
+        if clues.first.place_id == location_id
+          @action_result = :it_is_here
+        else
+          @action_result = :clue_position
+          @result_location_id = clues.first.place_id
+        end
       end
     else
-      @action_result = :bad_asking
+      clues = get_local_and_nearby_clues
+      1.upto( nb_successes ).each do
+        clue = clues.shift
+        get_clue( clue ) if clue
+      end
+      @action_result = :finds_multiples_clues
+      @result_location_id = location_id
     end
   end
 
-  def store_result
-    GameActionLog.create!( investigator_id: investigator.id,
-                           action_type: get_action_name, action_location_id: location_id,
-                           result_code: @action_result, result_location_id: @result_location_id
-    )
-  end
+  def get_local_and_nearby_clues
+    clues = []
+    clues << Clue.find_by_game_board_id_and_place_id( investigator.game_board_id, location_id )
 
-  def wait
-    ActiveRecord::Base.transaction do
-      final_location_id = location_id
-      if investigator.dead
-        final_location_id = Place.find_by_code( 'hopital_sainte_marie' ).id
-      end
-      if investigator.mad
-        final_location_id = Place.find_by_code( 'asylum' ).id
-      end
-      new_action = Ga::Waiting.create( location_id: final_location_id, travel_id: nil, start_time: Time.now )
-      investigator.update_attribute( :game_action_id, new_action.id )
-      self.destroy
+    location.neighbours.each do |neighbour|
+      clues << Clue.find_by_game_board_id_and_place_id( investigator.game_board_id, neighbour.id )
     end
-  end
 
-  def action_eta
-    action_elapsed_time = Time.now - start_time
-    duration = ACTION_DURATION
-    duration - action_elapsed_time
+    clues.compact.reject{ |e| e == false }
   end
 
 end

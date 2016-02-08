@@ -1,16 +1,19 @@
-class Ga::FindPortal < Ga::AskPeople
+class Ga::FindPortal < Ga::BaseAction
 
   def set_action_result
     clues_count = investigator.clues
 
     if clues_count >= 2
       portal = investigator.game_board.undiscovered_portals.sample
-      ActiveRecord::Base.transaction do
-        #  First we remove this clue
-        portal.update_attribute( :discovered, true )
-        investigator.update_attribute( :clues, investigator[ :clues ] - 2 )
+      if portal
+        ActiveRecord::Base.transaction do
+          portal.update_attribute( :discovered, true )
+          investigator.update_attribute( :clues, investigator[ :clues ] - 2 )
+        end
+        @action_result = :portal_discovered
+      else
+        @action_result = :no_portals
       end
-      @action_result = :portal_discovered
     else
       @action_result = :not_enough_clues
     end

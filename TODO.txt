@@ -1,12 +1,31 @@
-- Show all the monsters in a place in action tab + a link to show the monster stats (show monster)
+---- To doo
 
 - Add objects (simple : only comp bonus)
+
+Items :
+
+1 scaffold : Item code:string default_translation:string price:integer apparition_odd:integer bonuses:string (serialized field)
+1 hbtm class : investigators_items (see if can change hbtm table name) - investigator has item
+1 hbtm class : items_places - place can have item
+1 model : ItemsOnBoard game_board:references place:references item:references
+- add shop:boolean to Place
+
+At begining of each turn : place n items on the shops (max 4 items per shop)
+ - only on shop that has shop = true
+ - take care of items_places
+
+Each time a investigator goe to a shop he has the action buy, with this action he can buy item(s) regarding his money
+
+Each item buff or unbuff one or more caracs.
+- Before making a test, we check all the buffs of the items for that carac and we take the max.
+- We do the same for the unbuff and we check the min.
+- We compute current carac + buff + unbuff and we then make the test.
+- A carac can't be lower than 1.
+
+--
+
 - Add salary (given each turn directly to investigator)
 - Influence allow to negotiate prices : 5% rebate per success (max 50%)
-
-- Buff ask people :
- - 1 success = same work as today
- - 2+ success = get a number of indices equal to the number of success in all the nearby location (you make people work for you)
 
 - Add taxis : allow 3 moves in one. Must pay for that, but influence can negotiate the price.
  - This is a random event (10% chance)
@@ -15,3 +34,11 @@
 
 http://getbootstrap.com/getting-started/#examples
 http://www.w3schools.com/bootstrap/
+
+---- Done
+
+- Buff ask people :
+ - 1 success = same work as today
+ - 2+ success = get a number of indices equal to the number of success in all the nearby location (you make people work for you)
+
+- Show all the monsters in a place in action tab + a link to show the monster stats (show monster)

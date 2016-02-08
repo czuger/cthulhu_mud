@@ -88,26 +88,4 @@ class GameActionTest < ActiveSupport::TestCase
     Clue.unstub(:find_by_game_board_id_and_place_id)
   end
 
-  test 'ask_people' do
-    investigator = Investigator.find_by_name( 'George Bigot' )
-    action = investigator.game_action
-    action.print_action_data
-    action.check_action
-    Clue.stubs(:find_by_game_board_id_and_place_id).returns(true)
-    action.check_action
-    Clue.unstub(:find_by_game_board_id_and_place_id)
-  end
-
-  test 'ask_people_deep_in_method' do
-    arkham = Place.find_by_code( 'arkham' )
-    investigator = Investigator.find_by_name( 'George Bigot' )
-    action = investigator.game_action
-    Clue.stubs(:find_by_game_board_id_and_place_id).returns(false)
-    Place.expects(:neighbours).returns( [ arkham ] )
-    Investigator.expects(:make_test).returns(true)
-    action.check_action
-    Clue.unstub(:find_by_game_board_id_and_place_id)
-    Place.unstub(:neighbours)
-  end
-
 end

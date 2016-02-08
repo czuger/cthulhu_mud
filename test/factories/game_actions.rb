@@ -28,5 +28,15 @@ FactoryGirl.define do
       location {arkham}
       start_time { Time.now - 5000 }
     end
+    factory :close_portal do
+      type 'Ga::ClosePortal'
+      location {arkham}
+      start_time { Time.now - 5000 }
+    end
+    factory :find_portal do
+      type 'Ga::FindPortal'
+      location {arkham}
+      start_time { Time.now - 5000 }
+    end
   end
 end

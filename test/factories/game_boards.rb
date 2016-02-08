@@ -10,8 +10,9 @@ FactoryGirl.define do
       create( :arkham_to_kingsport )
       create( :graham_bell, game_board: game_board, )
       create( :allyson_masley, game_board: game_board )
-      create( :george_bigot, game_board: game_board )
       create( :in_the_news_place, game_board: game_board )
+      create( :asylum )
+      create( :hopital_sainte_marie )
       monster = create( :monster )
       # At least a monster can be created everywhere
       Place.all.each do |place|

@@ -1,8 +1,5 @@
 FactoryGirl.define do
   factory :portal do
-    game_board nil
-place nil
-presage "MyString"
+    presage "MyString"
   end
-
 end

@@ -1,4 +1,4 @@
-class Ga::CombatMonster < Ga::AskPeople
+class Ga::CombatMonster < Ga::BaseAction
 
   def set_action_result
 

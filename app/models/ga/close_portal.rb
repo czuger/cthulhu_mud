@@ -1,4 +1,4 @@
-class Ga::ClosePortal < Ga::AskPeople
+class Ga::ClosePortal < Ga::BaseAction
 
   def set_action_result
     clues_count = investigator.clues

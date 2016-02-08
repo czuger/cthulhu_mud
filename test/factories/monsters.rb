@@ -9,5 +9,4 @@ FactoryGirl.define do
     damages 1
     apparition_weight 1
   end
-
 end

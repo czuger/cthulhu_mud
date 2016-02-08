@@ -1,0 +1,8 @@
+%table.table
+  %tr
+    %th
+      Monstre(s)
+  - @monsters_in_place.each do |monster_place|
+    %tr
+      %td
+        = link_to( monster_place.monster.name, monster_place.monster )
