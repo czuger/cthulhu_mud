@@ -1,4 +1,6 @@
----- To doo
+- Add a row with news in the movement screen
+
+- Show all the monsters in a place in action tab + a link to show the monster stats (show monster)
 
 - Add objects (simple : only comp bonus)
 
