@@ -8,7 +8,7 @@ module InTheNewsHelper
 
   def target_travel_class( in_the_news )
     # if @investigator&.destination_id == in_the_news.place_id
-    if @investigator && @investigator_id == in_the_news.place_id
+    if @investigator && @investigator.destination_id == in_the_news.place_id
       :target_travel
     elsif @other_destinations_targeted_by_investigator.include?( in_the_news.place_id )
       :other_investigator_target_travel
