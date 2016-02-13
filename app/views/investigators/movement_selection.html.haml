@@ -1,13 +1,15 @@
 %h4 Available travels
 
 .row
+  .col-lg-4
+    = render partial: 'in_the_news/in_the_news'
   .col-lg-8
     %table.table
       %thead
         %tr
           %th Destination
-          %th Neighbours
-          %th Lead to
+          %th Second
+          %th Third
           %th
 
       %tbody
@@ -17,6 +19,3 @@
             %td= neighbours( travel )
             %td= lead_to( travel )
             %td= button_to 'Start travel', game_board_investigator_move_start_path( @current_game_board, @investigator, travel_destination: travel.id ), class: 'btn btn-default'
-
-  .col-lg-4
-    = render partial: 'in_the_news/in_the_news'
