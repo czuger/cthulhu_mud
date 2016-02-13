@@ -1,5 +1,9 @@
 module InvestigatorsActions::ClueFinding
 
+  def in_the_news_places
+    @in_the_news_places = @current_game_board.in_the_news_places.sort_by{ |e| [ e.place.parent_id, e.id ] }
+  end
+
   def investigate
     run_action( __method__ )
   end

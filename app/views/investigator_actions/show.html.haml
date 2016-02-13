@@ -1,33 +1,26 @@
-.container
+%h4 Investigator Actions
 
-  %h3 Investigator Actions
+= button_to 'Investigator', game_board_investigators_path( @current_game_board ), method: :get, class: 'btn btn-default'
 
-  = button_to 'Investigator', game_board_investigators_path( @current_game_board ), method: :get, class: 'btn btn-default'
+%br
 
-  %br
+.row
+  .col-lg-6
+    = render partial: 'in_the_news/in_the_news'
+  .col-lg-6
+    = render partial: 'actions'
 
-  .row
-    .col-lg-6
-      = render partial: 'investigator'
-    .col-lg-6
-      = render partial: 'in_the_news'
-  .row
-    .col-lg-6
-      = render partial: 'actions'
-    .col-lg-6
-      = render partial: 'game_action_log'
+.row
+  .col-lg-6
+    = render partial: 'discovered_portals'
+  .col-lg-6
+    = render partial: 'monster_in_place'
 
-  .row
-    .col-lg-6
-      = render partial: 'game_status'
-    .col-lg-6
-      = render partial: 'monster_in_place'
-
-  .row
-    .col-lg-6
-      = render partial: 'board_log'
-    .col-lg-6
-      = render partial: 'discovered_portals'
+.row
+  .col-lg-6
+    = render partial: 'game_action_log'
+  .col-lg-6
+    = render partial: 'investigator'
 
 
 

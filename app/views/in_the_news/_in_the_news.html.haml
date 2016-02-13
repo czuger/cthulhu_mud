@@ -1,0 +1,14 @@
+%table.table
+  %thead
+    %tr
+      %th
+        News
+  %tbody
+    - @in_the_news_places.each do |in_the_news|
+      %tr
+        %td
+          - if in_the_news.discovered_clue
+            %strike
+              = news_info( in_the_news )
+          - else
+            = news_info( in_the_news )

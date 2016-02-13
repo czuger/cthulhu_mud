@@ -1,14 +1,22 @@
-%h1 Avlaiable travels
+%h4 Available travels
 
-%table.table
-  %thead
-    %tr
-      %th Destination
-      %th
+.row
+  .col-lg-8
+    %table.table
+      %thead
+        %tr
+          %th Destination
+          %th Neighbours
+          %th Lead to
+          %th
 
-  %tbody
-    - @travels.each do |travel|
-      %tr
-        %td= destination( travel )
-        %td= button_to 'Start travel', game_board_investigator_move_start_path( @current_game_board, @investigator, travel_destination: travel.id ), class: 'btn btn-default'
+      %tbody
+        - @travels.each do |travel|
+          %tr
+            %td= destination( travel )
+            %td= neighbours( travel )
+            %td= lead_to( travel )
+            %td= button_to 'Start travel', game_board_investigator_move_start_path( @current_game_board, @investigator, travel_destination: travel.id ), class: 'btn btn-default'
 
+  .col-lg-4
+    = render partial: 'in_the_news/in_the_news'

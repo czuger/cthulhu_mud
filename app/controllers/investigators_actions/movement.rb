@@ -1,8 +1,11 @@
 module InvestigatorsActions::Movement
 
+  include InvestigatorsActions::ClueFinding
+
   def movement_selection
     set_investigator
     @travels = @investigator.game_action.movement_possibilities
+    @in_the_news_places = in_the_news_places
   end
 
   def move_start

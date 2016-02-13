@@ -1,19 +1,6 @@
-%h1 GameBoardLogs#show
+= render partial: 'game_status'
 
-%table
-  %tr
-    %th
-      Presage
-    %th
-      Portals
-    %th
-      Destiny
-  - @log.each do |log|
-    %tr
-      %td= log.presage
-      %td= log.portal_count
-      %td= log.final_destiny
-
+= render partial: 'board_log'
 
 
 

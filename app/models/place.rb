@@ -78,15 +78,15 @@ class Place < ActiveRecord::Base
     result
   end
 
+  # Le - la - les
+  def name_with_article
+    definite_article + translated_name
+  end
+
   private
 
   def translated_name
     I18n.t( "places.#{cleaned_code}", default: default_translation )
-  end
-
-  # Le - la - les
-  def name_with_article
-    definite_article + translated_name
   end
 
   # Du - de - la - de l'

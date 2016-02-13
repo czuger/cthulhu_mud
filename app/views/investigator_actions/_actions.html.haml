@@ -1,3 +1,8 @@
+- action_data = @investigator.game_action.print_action_data
+= action_data[ :location_to_print ]
+%span{ class: :eta_show_area, id: "eta_show_area_#{@investigator.id}", eta: action_data[ :eta_int ] }
+  = action_data[ :eta_str ]
+
 .list-group
   - if @investigator.has_actions
     = link_to 'Move', game_board_investigator_movement_selection_path( @current_game_board, @investigator), class: 'list-group-item'
