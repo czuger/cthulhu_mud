@@ -1,3 +1,5 @@
+require "rvm/capistrano"
+
 # config valid only for current version of Capistrano
 lock '3.4.0'
 
@@ -11,6 +13,9 @@ set :repo_url, 'git@github.com:czuger/cthulhu_mud'
 
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
 set :linked_files, fetch(:linked_files, []).push( 'config/secrets.yml', 'db/production.sqlite3' )
+
+set :rvm_type, :user
+set :rvm_ruby_version, '2.3.0'
 
 # Default value for :scm is :git
 # set :scm, :git

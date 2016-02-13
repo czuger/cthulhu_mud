@@ -54,6 +54,8 @@ group :development, :test do
   gem "factory_girl_rails", "~> 4.0"
 end
 
+gem 'rvm-capistrano'
+
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
@@ -67,6 +69,7 @@ group :development do
   gem 'capistrano', '~> 3.4.0'
   gem 'capistrano-rails', '~> 1.1'
   gem 'capistrano3-unicorn'
+  # gem 'rvm1-capistrano3'
 
 end
 
