@@ -8,6 +8,14 @@ class InvestigatorsControllerTest < ActionController::TestCase
     @travel = Travel.first
   end
 
+  test 'follow path' do
+    @game_board = create( :game_board )
+    @investigator = create( :graham_bell, game_board: @game_board )
+    # pp Place.all.to_a
+    get :follow_path, game_board_id: @game_board, investigator_id: @investigator
+    assert_redirected_to game_board_investigators_path( assigns( :current_game_board ) )
+  end
+
   test "should get index" do
     get :index, game_board_id: @game_board
     assert_response :success

@@ -1,7 +1,8 @@
 module InvestigatorsActions::ClueFinding
 
-  def in_the_news_places
+  def setup_in_the_news_places
     @in_the_news_places = @current_game_board.in_the_news_places.sort_by{ |e| [ e.place.parent_id, e.id ] }
+    @other_destinations_targeted_by_investigator = @current_game_board.investigators.where.not( destination_id: nil ).pluck( :destination_id )
   end
 
   def investigate

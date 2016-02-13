@@ -6,6 +6,7 @@
 .list-group
   - if @investigator.has_actions
     = link_to 'Move', game_board_investigator_movement_selection_path( @current_game_board, @investigator), class: 'list-group-item'
+    = link_to 'Follow path', game_board_investigator_follow_path_path( @current_game_board, @investigator), class: 'list-group-item' if @investigator.destination_id
     = link_to 'Investigate a place', game_board_investigator_investigate_path( @current_game_board, @investigator), class: 'list-group-item'
     = link_to t( '.ask_people' ), game_board_investigator_ask_people_path( @current_game_board, @investigator), class: 'list-group-item'
     = link_to 'Trouver un portail', game_board_investigator_find_portal_path( @current_game_board, @investigator), class: 'list-group-item'

@@ -5,10 +5,14 @@
         News
   %tbody
     - @in_the_news_places.each do |in_the_news|
-      %tr
+      %tr{ class: target_travel_class( in_the_news ) }
         %td
           - if in_the_news.discovered_clue
             %strike
               = news_info( in_the_news )
           - else
-            = news_info( in_the_news )
+            - if @investigator
+              = link_to news_info( in_the_news ), game_board_investigator_set_destination_path( @current_game_board, @investigator, in_the_news_place_id: in_the_news.id ),
+              method: :post
+            - else
+              = news_info( in_the_news )

@@ -17,6 +17,8 @@ Rails.application.routes.draw do
       get :find_portal
       get :close_portal
       get :combat_monster
+      post :set_destination
+      get :follow_path
     end
     get :next_turn
     get :start_game

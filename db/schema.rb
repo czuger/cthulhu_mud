@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160201160311) do
+ActiveRecord::Schema.define(version: 20160213162039) do
 
   create_table "clues", force: :cascade do |t|
     t.integer  "game_board_id", null: false
@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(version: 20160201160311) do
     t.integer  "combat",         default: 2,     null: false
     t.boolean  "mad",            default: false, null: false
     t.boolean  "dead",           default: false, null: false
+    t.integer  "destination_id"
   end
 
   add_index "investigators", ["game_action_id"], name: "index_investigators_on_game_action_id"
