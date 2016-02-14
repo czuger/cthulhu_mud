@@ -27,13 +27,14 @@ module InvestigatorsActions::Movement
 
   def follow_path
     if @investigator.destination_id
-      nodes = Travel.all.pluck( :place_from_id, :place_to_id ).map{ |t| [ t.first, t.last ] }.uniq.flatten
-      dg = RGL::DirectedAdjacencyGraph[ *nodes ]
-      pp dg
-      sp = dg.dijkstra_shortest_path( Hash.new(1), @investigator.game_action.location_id, @investigator.destination_id )
+      nodes = Travel.all.pluck( :place_from_id, :place_to_id ).map{ |t| [ t.first, t.last ] }.uniq
+      graph = build_graph( nodes )
+      pp graph
+      sp = shortest_path( graph, @investigator.game_action.location_id, @investigator.destination_id )
+      pp sp
       next_step = get_next_step( sp )
-      next_step_place = Place.find( next_step )
-      @investigator.game_action.move_to( next_step_place ) if next_step
+      next_step_travel = Travel.find_by_place_from_id_and_place_to_id( @investigator.game_action.location_id, next_step )
+      @investigator.game_action.move_to( next_step_travel ) if next_step_travel
       redirect_to game_board_investigators_url( @current_game_board )
     end
   end
@@ -46,6 +47,48 @@ module InvestigatorsActions::Movement
     elsif path.length >= 2
       path[ 1 ]
     end
+  end
+
+  def build_graph( nodes )
+    g = {}
+    nodes.each do |node|
+      unless g[ node[ 0 ] ]
+        g[ node[ 0 ] ] = []
+      end
+      g[ node[0] ] << node[ 1 ]
+    end
+    g
+  end
+
+  def shortest_path( graph, start, goal )
+
+    # find path
+    frontier = []
+    frontier << start
+    came_from = {}
+    came_from[ start ] = nil
+
+    while ! frontier.empty? do
+      current = frontier.shift
+      break if current == goal
+
+      graph[ current ].each do |neighbor|
+        unless came_from[ neighbor ]
+          frontier << neighbor
+          came_from[ neighbor ] = current
+        end
+      end
+    end
+
+    # build path
+    current = goal
+    path = [ current ]
+    while current != start
+      current = came_from[ current ]
+      path << current
+    end
+
+    path.reverse
   end
 
 end
