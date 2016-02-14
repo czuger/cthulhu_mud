@@ -12,20 +12,20 @@
 
   .form-group
     = f.label :place_from, class: 'col-sm-2 control-label'
-    .col-sm-10
+    .col-sm-2
       = f.select( :place_from_id, @places, {}, { class: 'form-control' } )
   .form-group
     = f.label :place_to, class: 'col-sm-2 control-label'
-    .col-sm-10
+    .col-sm-2
       = f.select( :place_to_id, @places, {}, { class: 'form-control' } )
   .form-group
     = f.label :cost, class: 'col-sm-2 control-label'
-    .col-sm-10
+    .col-sm-2
       = f.number_field :cost, class: 'form-control'
   .form-group
     = f.label :duration, class: 'col-sm-2 control-label'
-    .col-sm-10
+    .col-sm-2
       = f.time_select :duration, include_seconds: true
   .form-group
-    .col-sm-offset-2.col-sm-10
+    .col-sm-offset-2.col-sm-2
       = f.submit class: 'btn btn-primary'
