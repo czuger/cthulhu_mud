@@ -1,31 +1,41 @@
-= form_for @place do |f|
-  - if @place.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@place.errors.count, "error")} prohibited this place from being saved:"
+= form_for @place, html: { class: "form-horizontal", role: "form" } do |f|
+  -if @place.errors.any?
+    .alert.alert-danger.alert-dismissable{role: "alert"}
+      %button.close{type: "button", data: {dismiss: "alert"} }
+        %span{aria: {hidden: "true"} } &times;
+        %span.sr-only Close
+      %h4= "#{pluralize(@place.errors.count, "error")} prohibited this place from being saved:"
+
       %ul
         - @place.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
-    = f.label :default_translation
-    = f.text_field :default_translation
-  .field
-    = f.label :parent_id
-    = select( :place, :parent_id, Place.where( city: true ).map { |p| [ p.full_description_name, p.id ] }, {include_blank: 'None'} )
-  .field
-    = f.label :Masculin
-    = f.radio_button( :gender, :m )
-    = f.label :Feminin
-    = f.radio_button( :gender, :f )
-    = f.label :Plural
-    = f.radio_button( :gender, :p )
-
-  .field
-    = f.label :City
-    = f.check_box( :city )
-
-  .field
-    = f.label 'Well known place'
-    = f.check_box( :well_known_place )
-
-  = f.submit 'Save'
+  .form-group
+    = f.label :default_translation, class: 'col-sm-2 control-label'
+    .col-sm-2
+      = f.text_field :default_translation, class: 'form-control'
+  .form-group
+    = f.label :parent, class: 'col-sm-2 control-label'
+    .col-sm-2
+      = f.select( :parent_id, Place.where( city: true ).map { |p| [ p.full_description_name, p.id ] }, {include_blank: 'None'}, { class: 'form-control' } )
+  .form-group
+    = f.label :type, class: 'col-sm-2 control-label'
+    .col-sm-2
+      .btn-group{ 'data-toggle' => 'buttons-radio' }
+        = f.radio_button( :gender, :m )
+        Masculin
+        = f.radio_button( :gender, :f )
+        Feminin
+        = f.radio_button( :gender, :p )
+        Plural
+  .form-group
+    = f.label :city, class: 'col-sm-2 control-label'
+    .col-sm-1
+      = f.check_box :city
+  .form-group
+    = f.label :well_known_place, class: 'col-sm-2 control-label'
+    .col-sm-1
+      = f.check_box :well_known_place
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = f.submit class: 'btn btn-primary'

@@ -1,5 +1,7 @@
-%h1 New place
+.page-header
+  = link_to places_path, class: 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    Back
+  %h1 New place
 
 = render 'form'
-
-= link_to 'Back', places_path

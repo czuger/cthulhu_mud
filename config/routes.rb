@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   get 'new_investigator_name/:gender' => 'investigators#new_name'
 
   resources :travels do
-    get :wayback
+    post :wayback
   end
   resources :places
   resources :professions

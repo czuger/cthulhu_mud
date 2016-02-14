@@ -1,19 +1,20 @@
-%p#notice= notice
+.page-header
+  = link_to places_path, class: 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    Back
+  = link_to edit_place_path(@place), class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-pencil
+    Edit
+  %h1 Show place
 
-%p
-  %b Code:
-  = @place.code
-%p
-  %b Default translation:
-  = @place.default_translation
-%p
-  %b Parent id
-  = @place.parent_id
-%p
-  %b City
-  = @place.city
-
-= link_to 'Edit', edit_place_path(@place)
-\|
-= link_to 'Back', places_path
-
+%dl.dl-horizontal
+  %dt Default translation:
+  %dd= @place.default_translation
+  %dt Parent:
+  %dd= @place.parent
+  %dt Gender:
+  %dd= @place.gender
+  %dt City:
+  %dd= @place.city
+  %dt Well known place:
+  %dd= @place.well_known_place

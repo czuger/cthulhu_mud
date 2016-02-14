@@ -1,24 +1,31 @@
-= form_for @travel do |f|
-  - if @travel.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@travel.errors.count, "error")} prohibited this travel from being saved:"
+= form_for @travel, html: { class: "form-horizontal", role: "form" } do |f|
+  -if @travel.errors.any?
+    .alert.alert-danger.alert-dismissable{role: "alert"}
+      %button.close{type: "button", data: {dismiss: "alert"} }
+        %span{aria: {hidden: "true"} } &times;
+        %span.sr-only Close
+      %h4= "#{pluralize(@travel.errors.count, "error")} prohibited this travel from being saved:"
+
       %ul
         - @travel.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
-    = f.label :place_from
-    = select( :travel, :place_from_id, @places )
-  .field
-    = f.label :place_to
-    = select( :travel, :place_to_id, @places )
-  .field
-    = f.label :cost
-    = f.text_field :cost
-  .field
-    = f.label :duration
-    = f.time_select :duration, include_seconds: true
-  .actions
-    = f.submit 'Save'
-
-
+  .form-group
+    = f.label :place_from, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.select( :place_from_id, @places, {}, { class: 'form-control' } )
+  .form-group
+    = f.label :place_to, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.select( :place_to_id, @places, {}, { class: 'form-control' } )
+  .form-group
+    = f.label :cost, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.number_field :cost, class: 'form-control'
+  .form-group
+    = f.label :duration, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.time_select :duration, include_seconds: true
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = f.submit class: 'btn btn-primary'

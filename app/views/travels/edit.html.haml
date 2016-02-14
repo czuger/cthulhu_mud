@@ -1,7 +1,10 @@
-%h1 Editing travel
+.page-header
+  = link_to travels_path, class: 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    Back
+  = link_to @travel, class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-info-sign
+    Show
+  %h1 Editing travel
 
 = render 'form'
-
-= link_to 'Show', @travel
-\|
-= link_to 'Back', travels_path

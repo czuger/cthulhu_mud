@@ -1,25 +1,20 @@
-%p#notice= notice
+.page-header
+  = link_to travels_path, class: 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    Back
+  = link_to edit_travel_path(@travel), class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-pencil
+    Edit
+  %h1 Show travel
 
-%p
-  %b Place from:
-  = @travel.place_from.full_description_name
-%p
-  %b Place to:
-  = @travel.place_to.full_description_name
-%p
-  %b Cost:
-  = @travel.cost
-%p
-  %b Duration:
-  = @travel.duration.strftime( '%T' )
+%dl.dl-horizontal
+  %dt Place to:
+  %dd= @travel.place_from.full_description_name
+  %dt Place from:
+  %dd= @travel.place_to.full_description_name
+  %dt Cost:
+  %dd= @travel.cost
+  %dt Duration:
+  %dd= @travel.duration.strftime( '%T' )
 
-= link_to 'Create wayback', travel_wayback_path( @travel )
-
-%br
-%br
-
-= link_to 'Edit', edit_travel_path(@travel)
-\|
-= link_to 'Back', travels_path
-\|
-= link_to 'New travel', new_travel_path
+= button_to 'Create wayback', travel_wayback_path( @travel ), class: 'btn btn-default'

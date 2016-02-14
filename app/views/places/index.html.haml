@@ -1,34 +1,32 @@
-%h3 Listing places
+.page-header
+  = link_to new_place_path, class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-plus
+    New Place
+  %h1 Listing places
 
-
-= button_to 'New Place', new_place_path, method: :get, class: 'btn btn-default'
-
-%table.table
-  %thead
-    %tr
-      %th Name
-      %th Gender
-      %th City
-      %th Localisation name
-      %th Well known place
-      %th Monsters
-      %th
-      %th
-      %th
-
-  %tbody
-    - @places.each do |place|
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
       %tr
-        %td= place.full_description_name
-        %td= place.gender
-        %td= place.city
-        %td= place.full_localisation_name
-        %td= place.well_known_place
-        %td= place.monsters.map{ |e| e.name }.join( ',' )
-        %td= link_to 'Show', place
-        %td= link_to 'Edit', edit_place_path(place)
-        %td= link_to 'Destroy', place, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %th Name
+        %th Gender
+        %th City
+        %th Localisation name
+        %th Well known place
+        %th Monsters
+        %th
+        %th
+        %th
 
-%br
-
-= button_to 'New Place', new_place_path, method: :get, class: 'btn btn-default'
+    %tbody
+      - @places.each do |place|
+        %tr
+          %td= place.full_description_name
+          %td= place.gender
+          %td= place.city
+          %td= place.full_localisation_name
+          %td= place.well_known_place
+          %td= place.monsters.map{ |e| e.name }.join( ',' )
+          %td= link_to 'Show', place
+          %td= link_to 'Edit', edit_place_path(place)
+          %td= link_to 'Destroy', place, :method => :delete, :data => { :confirm => 'Are you sure?' }

@@ -18,7 +18,9 @@ class ItemsControllerTest < ActionController::TestCase
 
   test "should create item" do
     assert_difference('Item.count') do
-      post :create, item: { code: @item.code, combat: @item.combat, cost: @item.cost, default_translation: '45 Automatique', influence: @item.influence, observation: @item.observation, will: @item.will }
+      post :create, item: { code: @item.code, combat: @item.combat, cost: @item.cost,
+                            default_translation: '45 Automatique', influence: @item.influence,
+                            observation: @item.observation, will: @item.will }, place: {}
     end
 
     last_created_item = Item.last
@@ -39,7 +41,9 @@ class ItemsControllerTest < ActionController::TestCase
   end
 
   test "should update item" do
-    patch :update, id: @item, item: { code: @item.code, combat: @item.combat, cost: @item.cost, default_translation: @item.default_translation, influence: @item.influence, observation: @item.observation, will: @item.will }
+    patch :update, id: @item, item: { code: @item.code, combat: @item.combat, cost: @item.cost,
+                                      default_translation: @item.default_translation, influence: @item.influence,
+                                      observation: @item.observation, will: @item.will }, place: {}
     assert_redirected_to item_path(assigns(:item))
   end
 

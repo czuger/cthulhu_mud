@@ -1,6 +1,6 @@
-namespace :process do
+namespace :nginx do
   desc "Process routes"
-  task :routes => :environment do
+  task :create_regexp => :environment do
     root_routes = []
     Rails.application.routes.routes.each do |route|
       root_route = route.path.spec.to_s.gsub( /\(.*\)/, '' ).split( '/' )

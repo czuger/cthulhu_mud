@@ -1,1 +1,1 @@
-json.extract! @place, :id, :name, :city_id, :city, :created_at, :updated_at
+json.extract! @place, :id, :default_translation, :parent, :gender, :city, :well_known_place, :created_at, :updated_at
