@@ -1,0 +1,34 @@
+.page-header
+  = link_to new_item_path, class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-plus
+    New Item
+  %h1 Listing items
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th Code
+        %th Default translation
+        %th Influence
+        %th Observation
+        %th Will
+        %th Combat
+        %th Cost
+        %th
+        %th
+        %th
+
+    %tbody
+      - @items.each do |item|
+        %tr
+          %td= item.code
+          %td= item.default_translation
+          %td= item.influence
+          %td= item.observation
+          %td= item.will
+          %td= item.combat
+          %td= item.cost
+          %td= link_to 'Show', item
+          %td= link_to 'Edit', edit_item_path(item)
+          %td= link_to 'Destroy', item, data: { confirm: 'Are you sure?' }, method: :delete

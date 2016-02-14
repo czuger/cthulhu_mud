@@ -71,5 +71,7 @@ group :development do
   gem 'capistrano3-unicorn'
   # gem 'rvm1-capistrano3'
 
+  gem 'bootstrap-generators', '~> 3.3.4'
+
 end
 

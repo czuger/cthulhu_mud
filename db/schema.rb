@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160213162039) do
+ActiveRecord::Schema.define(version: 20160214122107) do
 
   create_table "clues", force: :cascade do |t|
     t.integer  "game_board_id", null: false
@@ -103,6 +103,28 @@ ActiveRecord::Schema.define(version: 20160213162039) do
   end
 
   add_index "investigators", ["game_action_id"], name: "index_investigators_on_game_action_id"
+
+  create_table "items", force: :cascade do |t|
+    t.string   "code",                            null: false
+    t.string   "default_translation",             null: false
+    t.integer  "influence",           default: 0, null: false
+    t.integer  "observation",         default: 0, null: false
+    t.integer  "will",                default: 0, null: false
+    t.integer  "combat",              default: 0, null: false
+    t.integer  "cost",                default: 1, null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  add_index "items", ["code"], name: "index_items_on_code", unique: true
+
+  create_table "items_can_be_found_at_places", id: false, force: :cascade do |t|
+    t.integer "item_id",  null: false
+    t.integer "place_id", null: false
+  end
+
+  add_index "items_can_be_found_at_places", ["item_id"], name: "index_items_can_be_found_at_places_on_item_id"
+  add_index "items_can_be_found_at_places", ["place_id", "item_id"], name: "index_items_can_be_found_at_places_on_place_id_and_item_id", unique: true
 
   create_table "monster_on_boards", force: :cascade do |t|
     t.integer  "game_board_id", null: false
