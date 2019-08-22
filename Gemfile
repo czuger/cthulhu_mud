@@ -39,8 +39,9 @@ gem 'ruby-graphviz'
 gem 'closure_tree'
 gem 'haml-rails'
 # gem 'yaml_db'
-gem 'bootstrap-sass', '~> 3.3.6'
-gem 'bootstrap', '~> 4.0.0.alpha3'
+
+# gem 'bootstrap-sass', '~> 3.3.6' # security issues
+# gem 'bootstrap', '~> 4.0.0.alpha3' # security issues
 
 # gem 'bootstrap'
 # gem 'bootstrap-sass'
