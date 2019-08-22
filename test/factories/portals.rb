@@ -1,5 +1,5 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :portal do
-    presage "MyString"
+    presage { 'MyString' }
   end
 end

@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :travel do
     transient do
       kingsport { Place.find_by_code('kingsport') || create(:kingsport) }
@@ -7,7 +7,7 @@ FactoryGirl.define do
     factory :arkham_to_kingsport do
       place_from_id { arkham.id }
       place_to_id { kingsport.id }
-      duration Time.now
+      duration {Time.now}
     end
   end
 end

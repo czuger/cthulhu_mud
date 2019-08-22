@@ -1,10 +1,10 @@
-FactoryGirl.define do
+FactoryBot.define do
 
   factory :game_board do
 
-    destiny 15
-    current_presage :comet
-    next_presage :eclipse
+    destiny { 15 }
+    current_presage { :comet }
+    next_presage { :eclipse }
 
     after(:create) do |game_board|
       create( :arkham_to_kingsport )
